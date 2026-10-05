@@ -3,7 +3,6 @@ import { InstagramStrip } from "@/components/editorial/InstagramStrip";
 import { IntroHero } from "@/components/editorial/IntroHero";
 import { ProductFeature } from "@/components/editorial/ProductFeature";
 import { RiseLoop } from "@/components/editorial/RiseLoop";
-import { SplitBanner } from "@/components/editorial/SplitBanner";
 import { Tile } from "@/components/editorial/Tile";
 import { TileGrid } from "@/components/editorial/TileGrid";
 import { TextLink } from "@/components/ui/TextLink";
@@ -28,6 +27,7 @@ export default function Home() {
       <ProductFeature
         title={home.accessorise.title}
         highlight={home.accessorise.highlight}
+        accent={home.accessorise.accent}
         line={home.accessorise.line}
         link={home.accessorise.link}
         picture={picture(home.accessorise.image)}
@@ -67,18 +67,6 @@ export default function Home() {
         links={home.hero.links}
         href={home.hero.links[0]?.href}
       />
-
-      <div className="mt-px">
-        <SplitBanner
-          kicker={home.banner.kicker}
-          lines={home.banner.lines}
-          highlight={home.banner.highlight}
-          accent={home.banner.accent}
-          body={home.banner.body}
-          picture={picture(home.banner.image)}
-          links={home.banner.links}
-        />
-      </div>
 
       <TileGrid columns={2} className="mt-px">
         {home.duoProduct.map((tile) => (

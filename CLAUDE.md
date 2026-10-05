@@ -41,7 +41,8 @@ here. This site has no dark mode, no backend and no dashboard.
   The menu opens from the side its button is on: right below `lg`, left from `lg`.
 - Anything that moves on its own has a pause button and a static layout under the `still` variant
   (reduced motion or no script).
-- The "accessoRISE" lettering mixes Libre Baskerville with Tusker capitals on purpose.
+- The accessoRISE lockup: Tusker capitals with ACCESSO in carbon and RISE in bronze, then
+  "and Shine" in Brilliant Signature, pine, tucked under RISE.
 - Borrow Armani's layout, never its assets, fonts or copy.
 - Code comments are rare and at most two lines.
 

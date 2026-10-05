@@ -32,7 +32,7 @@ All words, products and settings live in `src/content/`. No component needs to c
 | Show or hide prices | `showPrices` in `src/content/site.ts` |
 | Products, names, descriptions, prices | `src/content/products.ts` |
 | Style guide articles | `src/content/articles.ts` |
-| Home, world and contact page copy | `src/content/pages.ts` |
+| Home, Pocket Power, world and contact page copy | `src/content/pages.ts` |
 | Menu and footer links, and the header's Shop now button | `src/content/navigation.ts` |
 | Photos and their descriptions | `src/content/images.ts` |
 

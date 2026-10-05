@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Frame } from "@/components/ui/Frame";
 import { TextLink } from "@/components/ui/TextLink";
 import type { LinkItem, Picture } from "@/content/types";
@@ -24,10 +25,26 @@ type Props = {
   links?: LinkItem[];
   tone?: keyof typeof tones;
   reverse?: boolean;
+  level?: "h1" | "h2";
+  /** Marks the banner as the page's opening, so its photo loads first. */
+  priority?: boolean;
 };
 
-export function SplitBanner({ lines, highlight, accent, kicker, body, picture, links = [], tone = "linen", reverse }: Props) {
+export function SplitBanner({
+  lines,
+  highlight,
+  accent,
+  kicker,
+  body,
+  picture,
+  links = [],
+  tone = "linen",
+  reverse,
+  level = "h2",
+  priority,
+}: Props) {
   const colours = tones[tone];
+  const Heading = level;
 
   const paint = (line: string) => {
     if (!highlight || !line.includes(highlight)) return line;
@@ -46,13 +63,14 @@ export function SplitBanner({ lines, highlight, accent, kicker, body, picture, l
       <div className={cn("flex items-center", colours.panel, reverse && "md:order-2")}>
         <div className="w-full max-w-2xl p-(--caption-pad) py-16 md:py-(--caption-pad)">
           {kicker && <p className="mb-5 text-tiny uppercase opacity-70">{kicker}</p>}
-          <h2 className="heading-xl">
-            {lines.map((line) => (
-              <span key={line} className="block">
-                {paint(line)}
-              </span>
+          <Heading className="heading-xl">
+            {lines.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && " "}
+                <span className="block">{paint(line)}</span>
+              </Fragment>
             ))}
-          </h2>
+          </Heading>
           {accent && (
             <p className={cn("script -mt-1 pl-[12%] text-[clamp(2rem,1.2rem+2.6vw,3.5rem)]", colours.accent)}>{accent}</p>
           )}
@@ -68,7 +86,7 @@ export function SplitBanner({ lines, highlight, accent, kicker, body, picture, l
           )}
         </div>
       </div>
-      <Frame picture={picture} sizes={sizes.half} />
+      <Frame picture={picture} sizes={sizes.half} priority={priority} quality={priority ? 85 : 80} />
     </section>
   );
 }

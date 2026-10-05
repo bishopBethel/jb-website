@@ -31,8 +31,9 @@ export const home = {
   },
 
   accessorise: {
-    title: "accessoRISE & Shine",
+    title: "accessoRISE",
     highlight: "RISE",
+    accent: "and Shine",
     line: "Start with the one piece that completes your look.",
     link: shopLink,
     image: { id: "pp-box-stack" } satisfies ImageRef,
@@ -79,19 +80,6 @@ export const home = {
     links: [
       { label: "Discover Pocket Power", href: "/collection/pocket-power" },
       { label: "Read the Style Guide", href: "/style-guide" },
-    ] satisfies LinkItem[],
-  },
-
-  banner: {
-    kicker: "New",
-    lines: ["One box.", "Ten pocket squares."],
-    highlight: "Ten",
-    accent: "to make you stand out",
-    body: "A silk-wool blend, soft yet structured enough to hold its fold in your pocket. Each square folds up to seven ways.",
-    image: { id: "pp-drape" } satisfies ImageRef,
-    links: [
-      { label: "Discover Pocket Power", href: "/collection/pocket-power" },
-      { label: "View all ten", href: "/collection" },
     ] satisfies LinkItem[],
   },
 
@@ -142,6 +130,18 @@ export const home = {
 export const collection = {
   title: "Pocket Power",
   intro: "One box, ten pocket squares in a silk-wool blend. Browse the box and each square inside it.",
+  welcome: {
+    kicker: "Pocket Power",
+    lines: ["One box.", "Ten pocket squares."],
+    highlight: "Ten",
+    accent: "to make you stand out",
+    body: "A silk-wool blend, soft yet structured enough to hold its fold in your pocket. Each square folds up to seven ways.",
+    image: { id: "pp-drape" } satisfies ImageRef,
+    links: [
+      { label: "Discover the box", href: "/collection/pocket-power" },
+      { label: "View all ten", href: "#pieces" },
+    ] satisfies LinkItem[],
+  },
 };
 
 export const styleGuide = {

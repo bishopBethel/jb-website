@@ -7,17 +7,21 @@ import { sizes } from "@/lib/sizes";
 type Props = {
   title: string;
   highlight: string;
+  accent: string;
   line: string;
   link: LinkItem;
   picture: Picture;
 };
 
-export function ProductFeature({ title, highlight, line, link, picture }: Props) {
+export function ProductFeature({ title, highlight, accent, line, link, picture }: Props) {
   return (
     <section className="grid py-14 md:grid-cols-2 md:grid-rows-[1fr_auto_auto_1fr] md:py-0">
-      <div className="gutter text-center md:col-start-1 md:row-start-2 md:px-(--caption-pad)">
-        <h2 className="text-balance font-serif text-[clamp(2.25rem,1.7rem+2.4vw,4rem)] leading-[1.1]">
-          <Highlight text={title} marks={[{ text: highlight, className: "display text-[0.8em] text-pine" }]} />
+      <div className="gutter @container text-center md:col-start-1 md:row-start-2 md:px-(--caption-pad)">
+        <h2 className="inline-block text-left text-[min(15cqw,6rem)]">
+          <span className="display block">
+            <Highlight text={title} marks={[{ text: highlight, className: "text-bronze" }]} />
+          </span>{" "}
+          <span className="script -mt-[0.56em] ml-[2.7em] block text-pine">{accent}</span>
         </h2>
         <p className="copy-lg mx-auto mt-4 max-w-[34ch]">{line}</p>
       </div>
