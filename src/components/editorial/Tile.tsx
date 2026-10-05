@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Frame } from "@/components/ui/Frame";
 import { TextLink } from "@/components/ui/TextLink";
+import { tileHint } from "@/content/pages";
 import type { LinkItem, Picture } from "@/content/types";
 import { cn } from "@/lib/cn";
+import { HoverHint } from "./HoverHint";
 
 type Props = {
   title: string;
@@ -21,13 +23,18 @@ type Props = {
 
 export function Tile({ title, kicker, href, picture, pair, links, sizes, caption = "overlay", eager, aspect, className }: Props) {
   const frame = <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />;
-  const photos = pair ? (
-    <div className="grid grid-cols-2 gap-px">
-      {frame}
-      <Frame picture={pair} sizes={sizes} eager={eager} aspect={aspect} />
+  const photos = (
+    <div className="relative">
+      {pair ? (
+        <div className="grid grid-cols-2 gap-px">
+          {frame}
+          <Frame picture={pair} sizes={sizes} eager={eager} aspect={aspect} />
+        </div>
+      ) : (
+        frame
+      )}
+      <HoverHint label={tileHint} />
     </div>
-  ) : (
-    frame
   );
 
   if (caption === "below") {

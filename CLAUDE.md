@@ -52,6 +52,9 @@ here. This site has no dark mode, no backend and no dashboard.
 - Home photo-and-text sections dissolve the photo into the linen on the side facing the text: its
   edge fades out over a blurred stretch of its own edge colours. On desktop the top and bottom edges
   stay clean. From `md` the photo is pinned to the section's full height.
+- On phones the home hero is exactly one screen tall (`100svh`, the space above Safari's toolbar), so
+  Learn RISE shows without scrolling. The photo takes what the text leaves, and the headline rises
+  over the photo's fade.
 - The accessoRISE lockup: Tusker capitals with ACCESSO in carbon and RISE in bronze, then
   "and Shine" in Brilliant Signature, pine, tucked under RISE.
 - Borrow Armani's layout, never its assets, fonts or copy.

@@ -10,6 +10,9 @@ export type TileContent = {
   links: LinkItem[];
 };
 
+/** Follows the mouse over a tile's photo. */
+export const tileHint = "Learn more";
+
 export const home = {
   intro: {
     title: "Dress with RISE: the styling framework that makes your outfits look effortless",
