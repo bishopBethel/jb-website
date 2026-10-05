@@ -25,7 +25,8 @@ here. This site has no dark mode, no backend and no dashboard.
 - Client components receive data as props and never import `src/content/*`.
 - Photos are statically imported through `src/content/images.ts`, never referenced by string path.
 - Photos are WebP, at most 1920px wide, produced by `scripts/prepare-photos.mjs`. Never add an
-  AI upscaler: the brand wants sharper photos with no feature changed.
+  AI upscaler: the brand wants sharper photos with no feature changed. Sharp camera originals go
+  through its `clean/` folder instead: no unsharp mask, saved lossless (the home hero, `ed-tan-01`).
 - Pages span the full window at every width. Do not cap the page width; the brand rejected that.
 - Images are delivered as WebP at quality 80, or 85 for heroes and the product gallery.
 - The logo lives in `src/components/brand/`: `Logo` masks the official artwork, `Wordmark` typesets
