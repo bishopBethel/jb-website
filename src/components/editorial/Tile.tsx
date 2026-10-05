@@ -9,6 +9,8 @@ type Props = {
   kicker?: string;
   href: string;
   picture: Picture;
+  /** A second photo set beside the first. Both open `href`. */
+  pair?: Picture;
   links: LinkItem[];
   sizes: string;
   caption?: "overlay" | "below";
@@ -17,11 +19,21 @@ type Props = {
   className?: string;
 };
 
-export function Tile({ title, kicker, href, picture, links, sizes, caption = "overlay", eager, aspect, className }: Props) {
+export function Tile({ title, kicker, href, picture, pair, links, sizes, caption = "overlay", eager, aspect, className }: Props) {
+  const frame = <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />;
+  const photos = pair ? (
+    <div className="grid grid-cols-2 gap-px">
+      {frame}
+      <Frame picture={pair} sizes={sizes} eager={eager} aspect={aspect} />
+    </div>
+  ) : (
+    frame
+  );
+
   if (caption === "below") {
     return (
       <article className={cn("group relative", className)}>
-        <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />
+        {photos}
         <div className="flex flex-col items-center gap-2 px-3 pb-8 pt-5 text-center lg:pb-10 lg:pt-6">
           <h2 className="display text-[1.625rem] leading-none tracking-[0.04em] lg:text-[2rem]">
             <Link href={href} className="after:absolute after:inset-0">
@@ -44,7 +56,7 @@ export function Tile({ title, kicker, href, picture, links, sizes, caption = "ov
 
   return (
     <article className={cn("group relative text-paper", className)}>
-      <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />
+      {photos}
       <Link href={href} tabIndex={-1} aria-hidden="true" className="absolute inset-0" />
       {/* Caption rides the viewport's bottom edge while the tile's lower part scrolls past. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex h-2/3 items-end">

@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { searchIndex, site } from "@/content";
 import { footerColumns, navigation, shopLink } from "@/content/navigation";
 import type { LinkItem } from "@/content/types";
-import { instagramProfile, orderChannels } from "@/lib/order";
+import { instagramProfile } from "@/lib/social";
 import { baskerville, inter, signature, tusker } from "./fonts";
 import "./globals.css";
 
@@ -32,19 +32,13 @@ export const viewport: Viewport = {
 
 type IconLink = LinkItem & { icon: IconName };
 
-const channels = orderChannels();
-const social: IconLink[] = [
-  { label: "Instagram", href: instagramProfile, icon: "instagram", external: true },
-  ...channels
-    .filter((channel) => channel.kind === "whatsapp")
-    .map((channel): IconLink => ({ label: "WhatsApp", href: channel.href, icon: "whatsapp", external: true })),
-];
+const social: IconLink[] = [{ label: "Instagram", href: instagramProfile, icon: "instagram", external: true }];
 
 const suggestions: LinkItem[] = [
   { label: "Pocket Power", href: "/collection/pocket-power" },
   { label: "The RISE framework", href: "/style-guide/the-rise-framework" },
   { label: "The World of Joshua Black", href: "/world" },
-  { label: "Order and enquiries", href: "/contact" },
+  { label: "Ordering", href: "/contact" },
 ];
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

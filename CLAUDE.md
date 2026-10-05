@@ -11,11 +11,12 @@ here. This site has no dark mode, no backend and no dashboard.
 
 ## Decisions already made
 
-- Enquiry only. No cart, checkout or payments. "Order" opens WhatsApp or Instagram DM.
+- Ordering will happen on this site, through an online store that opens soon. Until then, product
+  pages show "Online store opening soon" (`store` in `src/content/pages.ts`) where the order button
+  will go. Never send visitors to Instagram, WhatsApp or direct messages to order.
 - Prices hidden. `showPrices` in `src/content/site.ts` turns them on.
 - Catalogue is Pocket Power (the box and its ten squares) plus the fila, a branded Yoruba cap.
-  The fila has its own page at `/traditional`, outside the product catalogue, and orders through
-  `orderChannelsFor`.
+  The fila has its own page at `/traditional`, outside the product catalogue.
 - Fully static. No database, no CMS, no runtime dependencies beyond Next and React.
 
 ## Conventions
@@ -35,9 +36,9 @@ here. This site has no dark mode, no backend and no dashboard.
   `copy-lg`, `quote`); interface text in Inter Regular; accents in Brilliant Signature (`script`).
 - Inter is used at weight 400 only. Do not add `font-medium` or `font-bold`.
 - Design rules: radius 0, no shadows. The page ground is linen (the `paper` token); white is never
-  used. Pine is the primary accent: bands, headline accents and the footer bar. Bronze text on linen
-  is only for large headline accents (2.8:1, short of the 3:1 large-text minimum); smaller text on
-  linen uses `bronze-ink` or pine.
+  used. Pine is the primary accent: bands, headline accents, the footer bar and the `pine` button
+  (the home statement's Shop now). Bronze text on linen is only for large headline accents (2.8:1,
+  short of the 3:1 large-text minimum); smaller text on linen uses `bronze-ink` or pine.
 - Header: on phones and tablets the logo sits left, with Shop now and the menu on the right. The
   menu button there is an outlined square as tall as Shop now. From
   `lg`, Menu and Search sit left, the logo centred and Shop now right. There is no bottom bar.

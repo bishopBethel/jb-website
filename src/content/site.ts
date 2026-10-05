@@ -17,8 +17,6 @@ export const site: SiteConfig = {
   showPrices: false,
 
   contact: {
-    // Example: "2348012345678". Leave empty until the brand confirms its number.
-    whatsappNumber: "",
     instagramHandle: "byjoshuablack",
   },
 

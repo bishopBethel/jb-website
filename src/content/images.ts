@@ -1,5 +1,6 @@
 import type { ImageAsset } from "./types";
 
+import edDarkSuit from "@/assets/images/editorial/ed-dark-suit.webp";
 import edNavy01 from "@/assets/images/editorial/ed-navy-01.webp";
 import edNavy02 from "@/assets/images/editorial/ed-navy-02.webp";
 import edNavy03 from "@/assets/images/editorial/ed-navy-03.webp";
@@ -78,6 +79,10 @@ export const images = {
   "pp-founder-box": {
     src: ppFounderBox,
     alt: "Opeyemi Okediji in a brown double-breasted suit, holding a Pocket Power box",
+  },
+  "ed-dark-suit": {
+    src: edDarkSuit,
+    alt: "A man in a dark double-breasted suit, burgundy tie and patterned pocket square, leaning on a rail beside a red column",
   },
   "ed-navy-01": {
     src: edNavy01,

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { OrderButtons } from "@/components/product/OrderButtons";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductGallery, ProductThumbs } from "@/components/product/ProductGallery";
+import { StoreNotice } from "@/components/product/StoreNotice";
 import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { Frame } from "@/components/ui/Frame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { box, getProduct, picture, products, site, squares } from "@/content";
+import { store } from "@/content/pages";
 import type { Product } from "@/content/types";
 import { formatPrice } from "@/lib/format";
-import { orderChannels } from "@/lib/order";
 import { absoluteUrl } from "@/lib/seo";
 import { sizes } from "@/lib/sizes";
 
@@ -71,15 +71,7 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
   const accordion: AccordionItem[] = [
     { title: "Info & details", content: <Bullets items={product.details} />, open: true },
     ...(product.care.length > 0 ? [{ title: "Product care", content: <Bullets items={product.care} /> }] : []),
-    {
-      title: "How to order",
-      content: (
-        <p>
-          Orders are taken by direct message. Tell us which piece you would like and we will confirm
-          availability, price, payment and delivery with you.
-        </p>
-      ),
-    },
+    { title: "Ordering", content: <p>{store.details}</p> },
   ];
 
   return (
@@ -106,7 +98,7 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
             <p className="copy mt-5 max-w-sm text-mute">{product.summary}</p>
 
             <div className="mt-8 max-w-sm">
-              <OrderButtons channels={orderChannels(product)} />
+              <StoreNotice status={store.status} note={store.note} />
               {isPiece && (
                 <p className="mt-4 text-center text-tiny text-mute">Sold as part of the Pocket Power box of ten.</p>
               )}

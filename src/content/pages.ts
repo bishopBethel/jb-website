@@ -5,6 +5,8 @@ export type TileContent = {
   title: string;
   href: string;
   image: ImageRef;
+  /** A second photo, set to the right of `image` in a tile that spans the full width. */
+  pair?: ImageRef;
   links: LinkItem[];
 };
 
@@ -45,9 +47,10 @@ export const home = {
       { label: "Discover Pocket Power", href: "/collection/pocket-power" },
       { label: "The world of Joshua Black", href: "/world" },
     ] satisfies LinkItem[],
+    shop: shopLink,
   },
 
-  quartet: [
+  trio: [
     {
       title: "Pocket Power",
       href: "/collection/pocket-power",
@@ -61,12 +64,6 @@ export const home = {
       links: [{ label: "View all ten", href: "/collection" }],
     },
     {
-      title: "Style Guide",
-      href: "/style-guide",
-      image: { id: "ed-tan-03" },
-      links: [{ label: "Read", href: "/style-guide" }],
-    },
-    {
       title: "Traditional",
       href: "/traditional",
       image: { id: "trad-red-portrait" },
@@ -74,33 +71,13 @@ export const home = {
     },
   ] satisfies TileContent[],
 
-  duoProduct: [
-    {
-      title: "The squares",
-      href: "/collection",
-      image: { id: "pp-rail" },
-      links: [{ label: "Discover the collection", href: "/collection" }],
-    },
-    {
-      title: "From the founder",
-      href: "/world",
-      image: { id: "pp-founder-box" },
-      links: [{ label: "Read the story", href: "/world" }],
-    },
-  ] satisfies TileContent[],
-
-  follow: [
-    { id: "ed-navy-04" },
-    { id: "pp-fan" },
-    { id: "ed-tan-01" },
-    { id: "pp-noir" },
-    { id: "ed-navy-03" },
-    { id: "pp-box-stack" },
-    { id: "ed-tan-04" },
-    { id: "pp-rust" },
-    { id: "ed-navy-06" },
-    { id: "pp-closeup" },
-  ] satisfies ImageRef[],
+  founder: {
+    title: "From the founder",
+    href: "/world",
+    image: { id: "ed-dark-suit" },
+    pair: { id: "pp-founder-box" },
+    links: [{ label: "Read the story", href: "/world" }],
+  } satisfies TileContent,
 };
 
 export const collection = {
@@ -132,7 +109,7 @@ export const traditional = {
     image: { id: "trad-rose-profile" } satisfies ImageRef,
     links: [
       { label: "See the colours", href: "#colours" },
-      { label: "Order a fila", href: "#order" },
+      { label: "Ordering", href: "#order" },
     ] satisfies LinkItem[],
   },
   colours: {
@@ -147,8 +124,7 @@ export const traditional = {
   },
   order: {
     title: "Order your fila",
-    text: "Joshua Black takes orders by direct message. Tell us the colour you like and we will confirm availability, price and delivery with you.",
-    item: "a fila",
+    text: "Our online store opens soon. When it does, you will choose your colour and order your fila right here.",
     image: { id: "trad-green-seated" } satisfies ImageRef,
   },
 };
@@ -213,24 +189,26 @@ export const world = {
     image: { id: "pp-box-open" } satisfies ImageRef,
     links: [
       { label: "Discover Pocket Power", href: "/collection/pocket-power" },
-      { label: "Order and enquiries", href: "/contact" },
+      { label: "Ordering", href: "/contact" },
     ] satisfies LinkItem[],
   },
 };
 
+/** Shown where the order button will sit once the online store opens. */
+export const store = {
+  status: "Online store opening soon",
+  note: "You will be able to order right here on our website.",
+  details: "Our online store opens soon. You will be able to order and pay for every piece right here on our website.",
+};
+
 export const contact = {
-  title: "Order and enquiries",
-  intro: "Joshua Black takes orders by direct message. Tell us what you are looking for and we will take it from there.",
+  title: "Ordering",
+  intro: "Our online store opens soon. When it does, you will choose, order and pay for every piece right here on our website.",
   image: { id: "pp-box-stack" } satisfies ImageRef,
+  stepsTitle: "How ordering will work",
   steps: [
-    { title: "Choose", text: "Browse Pocket Power and note the pieces you like." },
-    {
-      title: "Message",
-      text: "Send a direct message. The order button on every product page starts the conversation for you.",
-    },
-    {
-      title: "Confirm",
-      text: "We confirm availability, price, payment and delivery with you directly.",
-    },
+    { title: "Choose", text: "Browse Pocket Power and the fila and pick the pieces you want." },
+    { title: "Order", text: "Place your order and pay on our website. There is nothing to arrange by message." },
+    { title: "Receive", text: "We prepare your order and send it to you." },
   ],
 };

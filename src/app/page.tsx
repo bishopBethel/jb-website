@@ -1,13 +1,12 @@
-import { InstagramStrip } from "@/components/editorial/InstagramStrip";
 import { IntroHero } from "@/components/editorial/IntroHero";
 import { ProductFeature } from "@/components/editorial/ProductFeature";
 import { RiseLoop } from "@/components/editorial/RiseLoop";
 import { Tile } from "@/components/editorial/Tile";
 import { TileGrid } from "@/components/editorial/TileGrid";
+import { Button } from "@/components/ui/Button";
 import { TextLink } from "@/components/ui/TextLink";
 import { picture, site } from "@/content";
 import { home } from "@/content/pages";
-import { instagramProfile } from "@/lib/order";
 import { sizes } from "@/lib/sizes";
 
 export default function Home() {
@@ -32,8 +31,8 @@ export default function Home() {
         picture={picture(home.accessorise.image)}
       />
 
-      <TileGrid columns={4} className="mt-px">
-        {home.quartet.map((tile) => (
+      <TileGrid columns={3} className="mt-px">
+        {home.trio.map((tile, index, all) => (
           <Tile
             key={tile.href}
             caption="below"
@@ -41,7 +40,8 @@ export default function Home() {
             href={tile.href}
             picture={picture(tile.image)}
             links={tile.links}
-            sizes={sizes.quarter}
+            // An odd last tile spans the row on phones.
+            sizes={index === all.length - 1 && all.length % 2 === 1 ? sizes.thirdOrFull : sizes.third}
           />
         ))}
       </TileGrid>
@@ -58,18 +58,21 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <div className="mx-auto mt-10 max-w-sm">
+          <Button href={home.statement.shop.href} variant="pine">
+            {home.statement.shop.label}
+          </Button>
+        </div>
       </section>
 
-      <TileGrid columns={2} className="mt-px">
-        {home.duoProduct.map((tile) => (
-          <Tile key={tile.title} title={tile.title} href={tile.href} picture={picture(tile.image)} links={tile.links} sizes={sizes.half} />
-        ))}
-      </TileGrid>
-
-      <InstagramStrip
-        handle={site.contact.instagramHandle}
-        profileUrl={instagramProfile}
-        pictures={home.follow.map(picture)}
+      <Tile
+        className="mt-px"
+        title={home.founder.title}
+        href={home.founder.href}
+        picture={picture(home.founder.image)}
+        pair={picture(home.founder.pair)}
+        links={home.founder.links}
+        sizes={sizes.pair}
       />
     </>
   );

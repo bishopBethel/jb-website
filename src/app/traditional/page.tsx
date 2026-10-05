@@ -1,18 +1,15 @@
 import { SplitBanner } from "@/components/editorial/SplitBanner";
-import { OrderButtons } from "@/components/product/OrderButtons";
+import { StoreNotice } from "@/components/product/StoreNotice";
 import { Frame } from "@/components/ui/Frame";
 import { picture } from "@/content";
-import { traditional } from "@/content/pages";
-import { orderChannelsFor } from "@/lib/order";
+import { store, traditional } from "@/content/pages";
 import { pageMetadata } from "@/lib/seo";
 import { sizes } from "@/lib/sizes";
-
-const path = "/traditional";
 
 export const metadata = pageMetadata({
   title: traditional.title,
   description: traditional.intro,
-  path,
+  path: "/traditional",
 });
 
 export default function TraditionalPage() {
@@ -60,7 +57,7 @@ export default function TraditionalPage() {
             </h2>
             <p className="copy-lg mt-5">{order.text}</p>
             <div className="mt-8 max-w-sm">
-              <OrderButtons channels={orderChannelsFor(order.item, path)} />
+              <StoreNotice status={store.status} />
             </div>
           </div>
         </div>

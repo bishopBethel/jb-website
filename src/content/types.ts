@@ -96,8 +96,6 @@ export type SiteConfig = {
   country: string;
   showPrices: boolean;
   contact: {
-    /** Digits only with country code, no plus sign or leading zero. Empty hides WhatsApp. */
-    whatsappNumber: string;
     instagramHandle: string;
     email?: string;
   };

@@ -1,7 +1,8 @@
 # Joshua Black
 
 The website for Joshua Black, a Nigerian men's accessories label. It presents Pocket Power (one
-box, ten pocket squares), a style guide, and the brand's story. Orders are taken by direct message.
+box, ten pocket squares), the fila, a style guide, and the brand's story. Ordering will happen on
+the site itself once the online store opens; until then the product pages say it is opening soon.
 
 Built with Next.js 16, React 19, TypeScript and Tailwind CSS 4. Every page is static.
 
@@ -28,24 +29,14 @@ All words, products and settings live in `src/content/`. No component needs to c
 
 | To change | Edit |
 |---|---|
-| WhatsApp number, Instagram handle, tagline | `src/content/site.ts` |
+| Instagram handle, tagline | `src/content/site.ts` |
+| The "Online store opening soon" wording | `store` in `src/content/pages.ts` |
 | Show or hide prices | `showPrices` in `src/content/site.ts` |
 | Products, names, descriptions, prices | `src/content/products.ts` |
 | Style guide articles | `src/content/articles.ts` |
-| Home, Pocket Power, world and contact page copy | `src/content/pages.ts` |
+| Home, Pocket Power, fila, world and ordering page copy | `src/content/pages.ts` |
 | Menu and footer links, and the header's Shop now button | `src/content/navigation.ts` |
 | Photos and their descriptions | `src/content/images.ts` |
-
-### Turn on WhatsApp ordering
-
-In `src/content/site.ts`, set `whatsappNumber` to the number with its country code, digits only:
-
-```ts
-whatsappNumber: "2348012345678",
-```
-
-"Order on WhatsApp" then becomes the main button on every product, with the product name already
-written into the message. While the field is empty, the button opens Instagram instead.
 
 ### Show an announcement strip
 
@@ -147,7 +138,8 @@ Small headings and numerals switch to the bold weight on their own.
 ## Before launch
 
 - Set `NEXT_PUBLIC_SITE_URL` to the live address, for example `https://your-domain.com`.
-- Add the WhatsApp number.
+- Connect the online store, and replace the "Online store opening soon" notice on the product
+  and fila pages with its order buttons.
 - Replace the working names of the ten squares in `src/content/products.ts`.
 - Photograph the three squares marked `needsPhoto`.
 - Replace the founder portraits with the original camera files. The current ones came from

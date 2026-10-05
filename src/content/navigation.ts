@@ -27,15 +27,15 @@ export const navigation: NavNode[] = [
     ],
   },
   { label: "The World of Joshua Black", href: "/world" },
-  { label: "Order and enquiries", href: "/contact" },
+  { label: "Ordering", href: "/contact" },
 ];
 
 export const footerColumns: { title: string; links: LinkItem[] }[] = [
   {
     title: "Client service",
     links: [
-      { label: "Order and enquiries", href: "/contact" },
-      { label: "How ordering works", href: "/contact#how-it-works" },
+      { label: "Ordering", href: "/contact" },
+      { label: "How ordering will work", href: "/contact#how-it-works" },
     ],
   },
   {
