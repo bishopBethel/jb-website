@@ -10,7 +10,7 @@ export type TileContent = {
 
 export const home = {
   intro: {
-    title: "Dress with RISE: the styling framework that makes your outfits look effortless.",
+    title: "Dress with RISE: the styling framework that makes your outfits look effortless",
     accents: [
       { text: "RISE", tone: "pine" },
       { text: "makes your outfits look effortless", tone: "bronze" },
@@ -67,21 +67,12 @@ export const home = {
       links: [{ label: "Read", href: "/style-guide" }],
     },
     {
-      title: "The World",
-      href: "/world",
-      image: { id: "ed-navy-04" },
-      links: [{ label: "Discover more", href: "/world" }],
+      title: "Traditional",
+      href: "/traditional",
+      image: { id: "trad-red-portrait" },
+      links: [{ label: "Discover the fila", href: "/traditional" }],
     },
   ] satisfies TileContent[],
-
-  hero: {
-    title: "The intentional man",
-    image: { id: "ed-tan-02", crop: { x: 45, y: 14, top: 11.5 } } satisfies ImageRef,
-    links: [
-      { label: "Discover Pocket Power", href: "/collection/pocket-power" },
-      { label: "Read the Style Guide", href: "/style-guide" },
-    ] satisfies LinkItem[],
-  },
 
   duoProduct: [
     {
@@ -95,21 +86,6 @@ export const home = {
       href: "/world",
       image: { id: "pp-founder-box" },
       links: [{ label: "Read the story", href: "/world" }],
-    },
-  ] satisfies TileContent[],
-
-  duoGuide: [
-    {
-      title: "Less is not always more",
-      href: "/style-guide/less-is-not-always-more",
-      image: { id: "ed-navy-09" },
-      links: [{ label: "Read the guide", href: "/style-guide/less-is-not-always-more" }],
-    },
-    {
-      title: "Five sock shocks",
-      href: "/style-guide/five-sock-shocks",
-      image: { id: "ed-navy-08" },
-      links: [{ label: "Read the guide", href: "/style-guide/five-sock-shocks" }],
     },
   ] satisfies TileContent[],
 
@@ -141,6 +117,39 @@ export const collection = {
       { label: "Discover the box", href: "/collection/pocket-power" },
       { label: "View all ten", href: "#pieces" },
     ] satisfies LinkItem[],
+  },
+};
+
+export const traditional = {
+  title: "Traditional: the Fila",
+  intro: "The fila, the Yoruba cap that completes a traditional outfit, with the Joshua Black monogram in its band.",
+  welcome: {
+    kicker: "Traditional",
+    lines: ["The fila.", "Worn like a crown."],
+    highlight: "crown",
+    accent: "for the royal bloodline",
+    body: "The fila is the Yoruba cap that completes a traditional outfit. Ours carries the Joshua Black monogram in its band, made to finish your kaftan or agbada.",
+    image: { id: "trad-rose-profile" } satisfies ImageRef,
+    links: [
+      { label: "See the colours", href: "#colours" },
+      { label: "Order a fila", href: "#order" },
+    ] satisfies LinkItem[],
+  },
+  colours: {
+    title: "The colours",
+    intro: "Each fila carries the monogram in its band.",
+    items: [
+      { name: "Green", image: { id: "trad-green-band", crop: { x: 50, y: 30 } } },
+      { name: "Rose", image: { id: "trad-rose-band" } },
+      { name: "Red and navy", image: { id: "trad-red-band" } },
+      { name: "Tan", image: { id: "trad-tan-band" } },
+    ] satisfies { name: string; image: ImageRef }[],
+  },
+  order: {
+    title: "Order your fila",
+    text: "Joshua Black takes orders by direct message. Tell us the colour you like and we will confirm availability, price and delivery with you.",
+    item: "a fila",
+    image: { id: "trad-green-seated" } satisfies ImageRef,
   },
 };
 

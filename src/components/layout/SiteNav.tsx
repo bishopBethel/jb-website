@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type MouseEvent } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -40,7 +40,11 @@ export function SiteNav({ nav, searchIndex, suggestions, shop, extras }: Props) 
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
-  const openMenu = () => menu.current?.showModal();
+  // A tap or click starts on the menu's hidden title, so no focus ring lands on a button. Keys keep the default.
+  const openMenu = (event: MouseEvent) => {
+    menu.current?.showModal();
+    if (event.detail > 0) menu.current?.querySelector<HTMLElement>("h2")?.focus();
+  };
   const openSearch = () => search.current?.showModal();
   const searchFromMenu = () => {
     menu.current?.close();
@@ -70,8 +74,13 @@ export function SiteNav({ nav, searchIndex, suggestions, shop, extras }: Props) 
             <Logo decorative className="h-9 lg:h-11" />
           </Link>
 
-          <div className="flex items-center justify-end gap-2">
-            <Button href={shop.href} variant="solid" size="compact">
+          <div className="flex items-center justify-end gap-2 over-hero:text-ink over-photo:text-paper">
+            <Button
+              href={shop.href}
+              variant="solid"
+              size="compact"
+              className="over-photo:border-paper over-photo:bg-paper over-photo:text-ink over-photo:hover:bg-transparent over-photo:hover:text-paper"
+            >
               {shop.label}
             </Button>
             <button
@@ -79,7 +88,7 @@ export function SiteNav({ nav, searchIndex, suggestions, shop, extras }: Props) 
               onClick={openMenu}
               aria-haspopup="dialog"
               aria-label="Menu"
-              className="-mr-2 grid h-10 w-10 place-items-center lg:hidden"
+              className="grid size-9 place-items-center border border-current lg:hidden"
             >
               <Icon name="menu" />
             </button>

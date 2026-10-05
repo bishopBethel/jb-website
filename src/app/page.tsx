@@ -1,4 +1,3 @@
-import { HeroBanner } from "@/components/editorial/HeroBanner";
 import { InstagramStrip } from "@/components/editorial/InstagramStrip";
 import { IntroHero } from "@/components/editorial/IntroHero";
 import { ProductFeature } from "@/components/editorial/ProductFeature";
@@ -61,21 +60,8 @@ export default function Home() {
         </ul>
       </section>
 
-      <HeroBanner
-        title={home.hero.title}
-        picture={picture(home.hero.image)}
-        links={home.hero.links}
-        href={home.hero.links[0]?.href}
-      />
-
       <TileGrid columns={2} className="mt-px">
         {home.duoProduct.map((tile) => (
-          <Tile key={tile.title} title={tile.title} href={tile.href} picture={picture(tile.image)} links={tile.links} sizes={sizes.half} />
-        ))}
-      </TileGrid>
-
-      <TileGrid columns={2} className="mt-px">
-        {home.duoGuide.map((tile) => (
           <Tile key={tile.title} title={tile.title} href={tile.href} picture={picture(tile.image)} links={tile.links} sizes={sizes.half} />
         ))}
       </TileGrid>

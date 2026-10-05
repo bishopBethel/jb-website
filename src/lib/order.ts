@@ -17,15 +17,23 @@ export function orderMessage(product?: Pick<Product, "kind" | "name" | "number" 
 }
 
 export function orderChannels(product?: Pick<Product, "kind" | "name" | "number" | "slug">): OrderChannel[] {
+  return buildChannels(orderMessage(product), product ? "Order" : "Message us");
+}
+
+/** For pieces outside the Pocket Power catalogue, such as the fila. */
+export function orderChannelsFor(item: string, path: string): OrderChannel[] {
+  return buildChannels(`Hello Joshua Black, I would like to order ${item}. ${site.url}${path}`, "Order");
+}
+
+function buildChannels(message: string, verb: string): OrderChannel[] {
   const { whatsappNumber, instagramHandle } = site.contact;
   const channels: OrderChannel[] = [];
-  const verb = product ? "Order" : "Message us";
 
   if (whatsappNumber) {
     channels.push({
       kind: "whatsapp",
       label: `${verb} on WhatsApp`,
-      href: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage(product))}`,
+      href: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
     });
   }
   // ig.me accepts no pre-filled text, so the customer types the request there.

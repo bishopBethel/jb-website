@@ -14,8 +14,6 @@ const glyphs = {
   "chevron-down": <path d="m5.5 9.5 6.5 6.5 6.5-6.5" />,
   "arrow-right": <path d="M4 12h16m-6-6 6 6-6 6" />,
   "arrow-up-right": <path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15" />,
-  pause: <path d="M9 6v12m6-12v12" />,
-  play: <path d="m8 5.5 10.5 6.5L8 18.5Z" />,
   instagram: (
     <>
       <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />

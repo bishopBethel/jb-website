@@ -61,7 +61,19 @@
   }
 }
 
-@custom-variant over-hero (&:where([data-scrolled="false"]):where(body:has([data-hero]) *));
+@custom-variant over-hero (&:where([data-scrolled="false"], [data-scrolled="false"] *):where(body:has([data-hero]) *));
+
+/* The header's right side sits on the photo, except over a split hero from md, where linen is behind it. */
+@custom-variant over-photo {
+  &:where([data-scrolled="false"] *):where(body:has([data-hero]:not([data-hero="split"])) *) {
+    @slot;
+  }
+  @media (width < 48rem) {
+    &:where([data-scrolled="false"] *):where(body:has([data-hero="split"]) *) {
+      @slot;
+    }
+  }
+}
 
 /* Nothing should move: the visitor asked for less motion, or no script runs to drive it. */
 @custom-variant still {

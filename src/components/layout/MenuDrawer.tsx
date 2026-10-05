@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import type { LinkItem, NavNode } from "@/content/types";
@@ -17,6 +17,7 @@ type Props = {
 };
 
 export function MenuDrawer({ ref, nav, extras, onSearch }: Props) {
+  const titleId = useId();
   const [path, setPath] = useState<number[]>([]);
   const columnRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -47,7 +48,7 @@ export function MenuDrawer({ ref, nav, extras, onSearch }: Props) {
   return (
     <dialog
       ref={ref}
-      aria-label="Menu"
+      aria-labelledby={titleId}
       onClose={() => setPath([])}
       onClick={(event) => {
         if (event.target === event.currentTarget) close();
@@ -105,6 +106,13 @@ export function MenuDrawer({ ref, nav, extras, onSearch }: Props) {
                   </>
                 )}
               </div>
+
+              {depth === 0 && (
+                // A tap or click starts focus here. It follows the buttons above, so keys still start on them.
+                <h2 id={titleId} tabIndex={-1} className="sr-only">
+                  Menu
+                </h2>
+              )}
 
               <nav aria-label={column.title ?? "Main"} className="flex-1 overflow-y-auto px-(--gutter) pb-8 lg:px-5">
                 {depth === 0 ? (

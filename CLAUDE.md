@@ -13,7 +13,9 @@ here. This site has no dark mode, no backend and no dashboard.
 
 - Enquiry only. No cart, checkout or payments. "Order" opens WhatsApp or Instagram DM.
 - Prices hidden. `showPrices` in `src/content/site.ts` turns them on.
-- Catalogue is Pocket Power only: the box and its ten squares.
+- Catalogue is Pocket Power (the box and its ten squares) plus the fila, a branded Yoruba cap.
+  The fila has its own page at `/traditional`, outside the product catalogue, and orders through
+  `orderChannelsFor`.
 - Fully static. No database, no CMS, no runtime dependencies beyond Next and React.
 
 ## Conventions
@@ -36,11 +38,19 @@ here. This site has no dark mode, no backend and no dashboard.
   used. Pine is the primary accent: bands, headline accents and the footer bar. Bronze text on linen
   is only for large headline accents (2.8:1, short of the 3:1 large-text minimum); smaller text on
   linen uses `bronze-ink` or pine.
-- Header: on phones and tablets the logo sits left, with Shop now and the menu on the right. From
+- Header: on phones and tablets the logo sits left, with Shop now and the menu on the right. The
+  menu button there is an outlined square as tall as Shop now. From
   `lg`, Menu and Search sit left, the logo centred and Shop now right. There is no bottom bar.
   The menu opens from the side its button is on: right below `lg`, left from `lg`.
-- Anything that moves on its own has a pause button and a static layout under the `still` variant
-  (reduced motion or no script).
+- Pages that open with a photo hero (`data-hero`, including the home page) start with a transparent
+  header whose items turn linen wherever the photo is behind them (`over-hero`, `over-photo`). On
+  the home page's split hero, Shop now stays dark from `md`. Once the page scrolls, the header
+  returns to linen with dark items.
+- Anything that moves on its own has a static layout under the `still` variant (reduced motion or
+  no script). The RISE loop has no pause button, by the brand's choice.
+- Home photo-and-text sections dissolve the photo into the linen on the side facing the text: its
+  edge fades out over a blurred stretch of its own edge colours. On desktop the top and bottom edges
+  stay clean. From `md` the photo is pinned to the section's full height.
 - The accessoRISE lockup: Tusker capitals with ACCESSO in carbon and RISE in bronze, then
   "and Shine" in Brilliant Signature, pine, tucked under RISE.
 - Borrow Armani's layout, never its assets, fonts or copy.

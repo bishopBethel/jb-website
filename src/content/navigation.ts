@@ -18,6 +18,7 @@ export const navigation: NavNode[] = [
       },
     ],
   },
+  { label: "Traditional", href: "/traditional" },
   {
     label: "Style Guide",
     children: [
