@@ -5,7 +5,7 @@ import { SiteNav } from "@/components/layout/SiteNav";
 import type { IconName } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { searchIndex, site } from "@/content";
-import { footerColumns, navigation } from "@/content/navigation";
+import { footerColumns, navigation, shopLink } from "@/content/navigation";
 import type { LinkItem } from "@/content/types";
 import { instagramProfile, orderChannels } from "@/lib/order";
 import { baskerville, inter, signature, tusker } from "./fonts";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f5f1e8",
   viewportFit: "cover",
 };
 
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           nav={navigation}
           searchIndex={searchIndex}
           suggestions={suggestions}
-          order={{ label: "Order", href: "/contact" }}
+          shop={shopLink}
           extras={social}
         />
         <main id="main" className="flex-1">

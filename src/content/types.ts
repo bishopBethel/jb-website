@@ -69,6 +69,12 @@ export type Article = {
   related?: string[];
 };
 
+/** A phrase in a headline picked out in a brand colour. */
+export type Accent = {
+  text: string;
+  tone: "pine" | "bronze";
+};
+
 export type LinkItem = {
   label: string;
   href: string;

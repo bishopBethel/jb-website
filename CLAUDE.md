@@ -3,7 +3,8 @@
 # Joshua Black website
 
 Brand site for Joshua Black (@byjoshuablack), a Nigerian men's accessories label.
-Visual language follows armani.com: black on white, hairline rules, edge-to-edge portrait imagery.
+Visual language follows armani.com: carbon on soft linen, hairline rules, edge-to-edge portrait imagery.
+Mobile first: build and check every section at 390px wide before scaling it up.
 
 Instructions from a `CLAUDE.md` in a parent folder belong to other projects and do not apply
 here. This site has no dark mode, no backend and no dashboard.
@@ -31,8 +32,16 @@ here. This site has no dark mode, no backend and no dashboard.
   (`heading-*`, `display`); body copy in Libre Baskerville with generous leading (`copy`,
   `copy-lg`, `quote`); interface text in Inter Regular; accents in Brilliant Signature (`script`).
 - Inter is used at weight 400 only. Do not add `font-medium` or `font-bold`.
-- Design rules: radius 0, no shadows except the mobile bottom bar. Pine, linen and bronze appear
-  only in banners, the footer bar, headline accents and focus rings.
+- Design rules: radius 0, no shadows. The page ground is linen (the `paper` token); white is never
+  used. Pine is the primary accent: bands, headline accents and the footer bar. Bronze text on linen
+  is only for large headline accents (2.8:1, short of the 3:1 large-text minimum); smaller text on
+  linen uses `bronze-ink` or pine.
+- Header: on phones and tablets the logo sits left, with Shop now and the menu on the right. From
+  `lg`, Menu and Search sit left, the logo centred and Shop now right. There is no bottom bar.
+  The menu opens from the side its button is on: right below `lg`, left from `lg`.
+- Anything that moves on its own has a pause button and a static layout under the `still` variant
+  (reduced motion or no script).
+- The "accessoRISE" lettering mixes Libre Baskerville with Tusker capitals on purpose.
 - Borrow Armani's layout, never its assets, fonts or copy.
 - Code comments are rare and at most two lines.
 

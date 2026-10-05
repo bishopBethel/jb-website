@@ -1,4 +1,5 @@
-import type { ImageRef, LinkItem } from "./types";
+import { shopLink } from "./navigation";
+import type { Accent, ImageRef, LinkItem } from "./types";
 
 export type TileContent = {
   title: string;
@@ -8,6 +9,35 @@ export type TileContent = {
 };
 
 export const home = {
+  intro: {
+    title: "Dress with RISE: the styling framework that makes your outfits look effortless.",
+    accents: [
+      { text: "RISE", tone: "pine" },
+      { text: "makes your outfits look effortless", tone: "bronze" },
+    ] satisfies Accent[],
+    body: "If you've come to this site, you likely feel like styling yourself is trial and error. You're not alone. It's hard, but I can help.",
+    link: { label: "Learn RISE", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
+    image: { id: "ed-tan-01", crop: { x: 40, y: 30, top: 16 } } satisfies ImageRef,
+  },
+
+  loop: {
+    title: "The RISE framework",
+    items: [
+      { word: "Rhythm", line: "Repeat one colour, material or pattern." },
+      { word: "Interest", line: "Give the eye a single place to land." },
+      { word: "Structure", line: "Every piece knows its place." },
+      { word: "Entirety", line: "Does it all belong?" },
+    ],
+  },
+
+  accessorise: {
+    title: "accessoRISE & Shine",
+    highlight: "RISE",
+    line: "Start with the one piece that completes your look.",
+    link: shopLink,
+    image: { id: "pp-box-stack" } satisfies ImageRef,
+  },
+
   statement: {
     title: "A guide into sophistication, through accessories.",
     links: [
@@ -94,18 +124,6 @@ export const home = {
       links: [{ label: "Read the guide", href: "/style-guide/five-sock-shocks" }],
     },
   ] satisfies TileContent[],
-
-  rise: {
-    kicker: "The Style Guide",
-    title: "It is time to accessoRISE",
-    link: { label: "Read the RISE framework", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
-    letters: [
-      { letter: "R", word: "Rhythm", text: "Repeat one colour, material or pattern." },
-      { letter: "I", word: "Interest", text: "Give the eye a single place to land." },
-      { letter: "S", word: "Structure", text: "Leave white space. Balance the weight." },
-      { letter: "E", word: "Entirety", text: "Check the clothes, then the occasion." },
-    ],
-  },
 
   follow: [
     { id: "ed-navy-04" },

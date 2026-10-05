@@ -58,7 +58,7 @@ export function Footer({ columns, social, country, name }: Props) {
         </ul>
       </div>
 
-      <div className="bg-pine pb-[calc(5.5rem+env(safe-area-inset-bottom))] text-linen lg:pb-0">
+      <div className="bg-pine pb-[env(safe-area-inset-bottom)] text-linen">
         <p className="gutter py-5 text-tiny">
           Copyright © {new Date().getFullYear()} {name}. All rights reserved.
         </p>

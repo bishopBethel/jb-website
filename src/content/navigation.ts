@@ -4,6 +4,8 @@ import type { LinkItem, NavNode } from "./types";
 
 const squares = products.filter((p) => p.kind === "piece");
 
+export const shopLink: LinkItem = { label: "Shop now", href: "/collection/pocket-power" };
+
 export const navigation: NavNode[] = [
   {
     label: "Pocket Power",

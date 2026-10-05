@@ -1,7 +1,8 @@
-import { Wordmark } from "@/components/brand/Wordmark";
 import { HeroBanner } from "@/components/editorial/HeroBanner";
 import { InstagramStrip } from "@/components/editorial/InstagramStrip";
-import { RiseStrip } from "@/components/editorial/RiseStrip";
+import { IntroHero } from "@/components/editorial/IntroHero";
+import { ProductFeature } from "@/components/editorial/ProductFeature";
+import { RiseLoop } from "@/components/editorial/RiseLoop";
 import { SplitBanner } from "@/components/editorial/SplitBanner";
 import { Tile } from "@/components/editorial/Tile";
 import { TileGrid } from "@/components/editorial/TileGrid";
@@ -14,14 +15,26 @@ import { sizes } from "@/lib/sizes";
 export default function Home() {
   return (
     <>
-      <section className="gutter flex justify-center pb-10 pt-6 sm:pb-14 sm:pt-10 lg:pb-20 lg:pt-12">
-        <h1 data-giant-wordmark className="w-full text-pine lg:w-[70%]">
-          <Wordmark />
-        </h1>
-      </section>
+      <IntroHero
+        title={home.intro.title}
+        accents={home.intro.accents}
+        body={home.intro.body}
+        link={home.intro.link}
+        picture={picture(home.intro.image)}
+      />
 
-      <TileGrid columns={4}>
-        {home.quartet.map((tile, index) => (
+      <RiseLoop title={home.loop.title} items={home.loop.items} />
+
+      <ProductFeature
+        title={home.accessorise.title}
+        highlight={home.accessorise.highlight}
+        line={home.accessorise.line}
+        link={home.accessorise.link}
+        picture={picture(home.accessorise.image)}
+      />
+
+      <TileGrid columns={4} className="mt-px">
+        {home.quartet.map((tile) => (
           <Tile
             key={tile.href}
             caption="below"
@@ -30,7 +43,6 @@ export default function Home() {
             picture={picture(tile.image)}
             links={tile.links}
             sizes={sizes.quarter}
-            eager={index < 2}
           />
         ))}
       </TileGrid>
@@ -73,10 +85,6 @@ export default function Home() {
           <Tile key={tile.title} title={tile.title} href={tile.href} picture={picture(tile.image)} links={tile.links} sizes={sizes.half} />
         ))}
       </TileGrid>
-
-      <div className="mt-px">
-        <RiseStrip {...home.rise} />
-      </div>
 
       <TileGrid columns={2} className="mt-px">
         {home.duoGuide.map((tile) => (

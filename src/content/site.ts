@@ -23,9 +23,4 @@ export const site: SiteConfig = {
   },
 
   founder: { name: "Opeyemi Okediji", role: "Founder" },
-
-  announcement: {
-    text: "Pocket Power. One box. Ten pocket squares.",
-    href: "/collection/pocket-power",
-  },
 };

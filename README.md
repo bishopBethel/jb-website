@@ -33,7 +33,7 @@ All words, products and settings live in `src/content/`. No component needs to c
 | Products, names, descriptions, prices | `src/content/products.ts` |
 | Style guide articles | `src/content/articles.ts` |
 | Home, world and contact page copy | `src/content/pages.ts` |
-| Menu and footer links | `src/content/navigation.ts` |
+| Menu and footer links, and the header's Shop now button | `src/content/navigation.ts` |
 | Photos and their descriptions | `src/content/images.ts` |
 
 ### Turn on WhatsApp ordering
@@ -46,6 +46,15 @@ whatsappNumber: "2348012345678",
 
 "Order on WhatsApp" then becomes the main button on every product, with the product name already
 written into the message. While the field is empty, the button opens Instagram instead.
+
+### Show an announcement strip
+
+A thin carbon strip can sit above the header on every page. It is off. To turn it on, add this to
+`site` in `src/content/site.ts`:
+
+```ts
+announcement: { text: "Pocket Power. One box. Ten pocket squares.", href: "/collection/pocket-power" },
+```
 
 ### Show prices
 
@@ -100,8 +109,8 @@ Pages span the full window. On very wide screens a full-width photo is stretched
 |---|---|
 | Carbon black | `#1A1A1A` |
 | Bronze | `#CD7F32` |
-| Pine teal | `#004F49` |
-| Soft linen | `#F5F1E8` |
+| Pine teal | `#004F49`, the primary accent |
+| Soft linen | `#F5F1E8`, the page ground. The site uses no white. |
 | Headings | Tusker Grotesk 3500 Medium (main) and 3700 Bold, uppercase only |
 | Body copy | Libre Baskerville, set with generous leading |
 | Interface text | Inter Regular |
