@@ -15,8 +15,9 @@ const presets = {
   product: { upscaleBelow: 1900, scale: 2, sharpen: { sigma: 1.4, m1: 0.3, m2: 2.2, x1: 2, y2: 9, y3: 11 } },
   // Portraits arrive large but soft, so they get a stronger mask and no upscale.
   editorial: { upscaleBelow: 0, scale: 1, sharpen: { sigma: 1.4, m1: 0.3, m2: 2.6, x1: 2, y2: 10, y3: 14 } },
-  // Sharp camera originals (the home hero) keep every pixel: no mask, lossless, saved with editorial.
-  clean: { upscaleBelow: 0, scale: 1, sharpen: null, lossless: true, out: "editorial" },
+  // Sharp camera originals (the home hero) keep every pixel at full size: no mask, no width cap,
+  // lossless, saved with editorial. The hero is shown zoomed in, so it needs the extra detail.
+  clean: { upscaleBelow: 0, scale: 1, sharpen: null, lossless: true, maxWidth: Infinity, out: "editorial" },
 };
 
 // Squares that have no photo of their own are cut from a group shot. Cutting here, not in the
@@ -49,7 +50,7 @@ for (const [group, preset] of Object.entries(presets)) {
   for (const file of files.sort()) {
     const input = join(dir, file);
     const { width } = await sharp(input).metadata();
-    const target = Math.min(width < preset.upscaleBelow ? width * preset.scale : width, MAX_WIDTH);
+    const target = Math.min(width < preset.upscaleBelow ? width * preset.scale : width, preset.maxWidth ?? MAX_WIDTH);
     const output = join(outDir, `${basename(file, extname(file))}.webp`);
 
     let image = sharp(input).rotate().resize({ width: target, kernel: "lanczos3" });

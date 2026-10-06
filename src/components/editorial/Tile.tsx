@@ -11,8 +11,6 @@ type Props = {
   kicker?: string;
   href: string;
   picture: Picture;
-  /** A second photo set beside the first. Both open `href`. */
-  pair?: Picture;
   links: LinkItem[];
   sizes: string;
   caption?: "overlay" | "below";
@@ -21,18 +19,10 @@ type Props = {
   className?: string;
 };
 
-export function Tile({ title, kicker, href, picture, pair, links, sizes, caption = "overlay", eager, aspect, className }: Props) {
-  const frame = <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />;
+export function Tile({ title, kicker, href, picture, links, sizes, caption = "overlay", eager, aspect, className }: Props) {
   const photos = (
     <div className="relative">
-      {pair ? (
-        <div className="grid grid-cols-2 gap-px">
-          {frame}
-          <Frame picture={pair} sizes={sizes} eager={eager} aspect={aspect} />
-        </div>
-      ) : (
-        frame
-      )}
+      <Frame picture={picture} sizes={sizes} eager={eager} aspect={aspect} />
       <HoverHint label={tileHint} />
     </div>
   );

@@ -77,7 +77,7 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
   return (
     <>
       <div className="bg-tile">
-        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,44vw)_minmax(0,1fr)]">
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,min(44vw,calc(var(--page-max)*0.44)))_minmax(0,1fr)]">
           <div className="lg:order-2 lg:py-4">
             <ProductGallery pictures={pictures} />
           </div>

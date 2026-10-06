@@ -1,17 +1,16 @@
 import { shopLink } from "./navigation";
 import type { Accent, ImageRef, LinkItem } from "./types";
 
-export type TileContent = {
-  title: string;
-  href: string;
-  image: ImageRef;
-  /** A second photo, set to the right of `image` in a tile that spans the full width. */
-  pair?: ImageRef;
-  links: LinkItem[];
-};
-
 /** Follows the mouse over a tile's photo. */
 export const tileHint = "Learn more";
+
+/** Pocket Power's pitch, shared by the home page and the collection page. */
+const pocketPower = {
+  lines: ["One box.", "Ten pocket squares."],
+  highlight: "Ten",
+  accent: "to make you stand out",
+  body: "A silk-wool blend, soft yet structured enough to hold its fold in your pocket. Each square folds up to seven ways.",
+};
 
 export const home = {
   intro: {
@@ -22,76 +21,24 @@ export const home = {
     ] satisfies Accent[],
     body: "If you've come to this site, you likely feel like styling yourself is trial and error. You're not alone. It's hard, but I can help.",
     link: { label: "Learn RISE", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
+    rise: ["Rhythm", "Interest", "Structure", "Entirety"],
     image: { id: "ed-tan-01", crop: { x: 40, y: 30, top: 16 } } satisfies ImageRef,
   },
 
-  loop: {
-    title: "The RISE framework",
-    items: [
-      { word: "Rhythm", line: "Repeat one colour, material or pattern." },
-      { word: "Interest", line: "Give the eye a single place to land." },
-      { word: "Structure", line: "Every piece knows its place." },
-      { word: "Entirety", line: "Does it all belong?" },
-    ],
+  pocketPower: {
+    ...pocketPower,
+    kicker: "New",
+    image: { id: "pp-rust" } satisfies ImageRef,
+    cta: { label: "Buy Pocket Power", href: shopLink.href } satisfies LinkItem,
   },
-
-  accessorise: {
-    title: "accessoRISE",
-    highlight: "RISE",
-    accent: "and Shine",
-    line: "Start with the one piece that completes your look.",
-    link: shopLink,
-    image: { id: "pp-box-stack" } satisfies ImageRef,
-  },
-
-  statement: {
-    title: "A guide into sophistication, through accessories.",
-    links: [
-      { label: "Discover Pocket Power", href: "/collection/pocket-power" },
-      { label: "The world of Joshua Black", href: "/world" },
-    ] satisfies LinkItem[],
-    shop: shopLink,
-  },
-
-  trio: [
-    {
-      title: "Pocket Power",
-      href: "/collection/pocket-power",
-      image: { id: "pp-box-open" },
-      links: [{ label: "Discover the box", href: "/collection/pocket-power" }],
-    },
-    {
-      title: "The Squares",
-      href: "/collection",
-      image: { id: "pp-fan" },
-      links: [{ label: "View all ten", href: "/collection" }],
-    },
-    {
-      title: "Traditional",
-      href: "/traditional",
-      image: { id: "trad-red-portrait" },
-      links: [{ label: "Discover the fila", href: "/traditional" }],
-    },
-  ] satisfies TileContent[],
-
-  founder: {
-    title: "From the founder",
-    href: "/world",
-    image: { id: "ed-dark-suit" },
-    pair: { id: "pp-founder-box" },
-    links: [{ label: "Read the story", href: "/world" }],
-  } satisfies TileContent,
 };
 
 export const collection = {
   title: "Pocket Power",
   intro: "One box, ten pocket squares in a silk-wool blend. Browse the box and each square inside it.",
   welcome: {
+    ...pocketPower,
     kicker: "Pocket Power",
-    lines: ["One box.", "Ten pocket squares."],
-    highlight: "Ten",
-    accent: "to make you stand out",
-    body: "A silk-wool blend, soft yet structured enough to hold its fold in your pocket. Each square folds up to seven ways.",
     image: { id: "pp-drape" } satisfies ImageRef,
     links: [
       { label: "Discover the box", href: "/collection/pocket-power" },

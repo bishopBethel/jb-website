@@ -103,12 +103,12 @@ Pages span the full window. On very wide screens a full-width photo is stretched
 | Pine teal | `#004F49`, the primary accent |
 | Soft linen | `#F5F1E8`, the page ground. The site uses no white. |
 | Headings | Tusker Grotesk 3500 Medium (main) and 3700 Bold, uppercase only |
-| Body copy | Libre Baskerville, set with generous leading |
+| Body copy | Inter Regular, set with generous leading (italic for quotes) |
 | Interface text | Inter Regular |
 | Accent | Brilliant Signature |
 
-Logo files are in `src/assets/brand/` and the brand typefaces in `src/assets/fonts/`. Inter and
-Libre Baskerville are open source and are fetched from Google Fonts when the site is built.
+Logo files are in `src/assets/brand/` and the brand typefaces in `src/assets/fonts/`. Inter is
+open source and is fetched from Google Fonts when the site is built.
 
 Tusker Grotesk and Brilliant Signature are licensed fonts: confirm the brand's licences cover use
 on a website.

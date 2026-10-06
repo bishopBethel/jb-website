@@ -2,7 +2,7 @@
 export function StoreNotice({ status, note }: { status: string; note?: string }) {
   return (
     <div>
-      <p className="flex h-12 items-center justify-center border border-rule px-6 text-center text-label uppercase text-mute">
+      <p className="flex h-12 items-center justify-center rounded-full border border-rule px-6 text-center text-label uppercase text-mute">
         {status}
       </p>
       {note && <p className="mt-4 text-center text-tiny text-mute">{note}</p>}

@@ -3,11 +3,10 @@
 export const sizes = {
   full: "(min-width: 768px) 100vw, 70vw",
   half: "(min-width: 768px) 50vw, 70vw",
+  /** The home hero, zoomed in on its subject: 1.8 times a half from md, up to about 2.4 times full width on phones (fetched near 2x density). */
+  hero: "(min-width: 768px) 90vw, 114vw",
   third: "(min-width: 768px) 33vw, 50vw",
-  thirdOrFull: "(min-width: 768px) 33vw, 70vw",
   quarter: "(min-width: 1024px) 25vw, 50vw",
-  /** Two photos side by side across the full width. */
-  pair: "50vw",
   productMain: "(min-width: 1024px) 44vw, 70vw",
   strip: "(min-width: 1024px) 22vw, (min-width: 640px) 40vw, 70vw",
   thumb: "96px",

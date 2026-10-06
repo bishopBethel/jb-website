@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Button } from "@/components/ui/Button";
 import { Frame } from "@/components/ui/Frame";
 import { TextLink } from "@/components/ui/TextLink";
 import type { LinkItem, Picture } from "@/content/types";
@@ -23,8 +24,12 @@ type Props = {
   body?: string;
   picture: Picture;
   links?: LinkItem[];
+  /** A pine button under the text. */
+  cta?: LinkItem;
   tone?: keyof typeof tones;
   reverse?: boolean;
+  /** From md, sets the banner in from the window edges like the home hero card, its photo rounded. */
+  inset?: boolean;
   level?: "h1" | "h2";
   /** Marks the banner as the page's opening, so its photo loads first. */
   priority?: boolean;
@@ -38,8 +43,10 @@ export function SplitBanner({
   body,
   picture,
   links = [],
+  cta,
   tone = "linen",
   reverse,
+  inset,
   level = "h2",
   priority,
 }: Props) {
@@ -59,7 +66,7 @@ export function SplitBanner({
   };
 
   return (
-    <section className="group grid md:grid-cols-2">
+    <section className={cn("group grid md:grid-cols-2", inset && "md:mx-4 md:mt-4 lg:mt-24")}>
       <div className={cn("flex items-center", colours.panel, reverse && "md:order-2")}>
         <div className="w-full max-w-2xl p-(--caption-pad) py-16 md:py-(--caption-pad)">
           {kicker && <p className="mb-5 text-tiny uppercase opacity-70">{kicker}</p>}
@@ -84,9 +91,22 @@ export function SplitBanner({
               ))}
             </ul>
           )}
+          {cta && (
+            <div className="mt-8 max-w-sm">
+              <Button href={cta.href} variant="pine">
+                {cta.label}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
-      <Frame picture={picture} sizes={sizes.half} priority={priority} quality={priority ? 85 : 80} />
+      <Frame
+        picture={picture}
+        sizes={sizes.half}
+        priority={priority}
+        quality={priority ? 85 : 80}
+        className={cn(inset && "md:rounded-2xl md:[clip-path:inset(0_round_1rem)]")}
+      />
     </section>
   );
 }

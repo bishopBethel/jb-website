@@ -5,10 +5,10 @@ import { SiteNav } from "@/components/layout/SiteNav";
 import type { IconName } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { searchIndex, site } from "@/content";
-import { footerColumns, navigation, shopLink } from "@/content/navigation";
+import { footerColumns, menuLinks, shopLink } from "@/content/navigation";
 import type { LinkItem } from "@/content/types";
 import { instagramProfile } from "@/lib/social";
-import { baskerville, inter, signature, tusker } from "./fonts";
+import { inter, signature, tusker } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${tusker.variable} ${baskerville.variable} ${signature.variable} antialiased`}
+      className={`${inter.variable} ${tusker.variable} ${signature.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col">
         <a
@@ -57,13 +57,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {site.announcement && <AnnouncementBar {...site.announcement} />}
         <SiteNav
-          nav={navigation}
+          menuLinks={menuLinks}
           searchIndex={searchIndex}
           suggestions={suggestions}
           shop={shopLink}
           extras={social}
         />
-        <main id="main" className="flex-1">
+        <main id="main" className="page-width flex-1">
           {children}
         </main>
         <Footer columns={footerColumns} social={social} country={site.country} name={site.name} />

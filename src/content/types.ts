@@ -81,12 +81,6 @@ export type LinkItem = {
   external?: boolean;
 };
 
-export type NavNode = {
-  label: string;
-  href?: string;
-  children?: NavNode[];
-};
-
 export type SiteConfig = {
   name: string;
   tagline: string;
