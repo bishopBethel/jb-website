@@ -59,8 +59,9 @@ export function IntroHero({ title, accents, body, link, rise, picture }: Props) 
         </div>
         {/* On phones the words rise over the photo's fade, three gutters in from the card's left edge. */}
         <div className="relative z-20 max-md:-mr-[calc(var(--gutter)/2)] max-md:pl-[calc(var(--gutter)*2)]">
-          {/* On phones the headline scales with the card so it always sets in three lines. */}
-          <h1 className="heading-lg md:max-w-[22ch] text-balance leading-[1.16] max-md:text-[length:min(calc((100vw-4.25rem)/8.5),4.25rem)]">
+          {/* On phones the headline scales with the card and fills each line before breaking, so it always
+              reads "Dress classy without / guessing. With the RISE / framework." */}
+          <h1 className="heading-lg md:max-w-[22ch] md:text-balance leading-[1.16] max-md:text-[length:min(calc((100vw-4.25rem)/8.5),4.25rem)]">
             <Highlight text={title} marks={accents.map((accent) => ({ text: accent.text, className: tones[accent.tone] }))} />
           </h1>
           <p className="copy-lg mt-4 max-w-[40ch] md:mt-5">

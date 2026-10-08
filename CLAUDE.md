@@ -43,7 +43,7 @@ here. This site has no dark mode, no backend and no dashboard.
   darker bronze, no black, no white). Softer tones are carbon faded onto linen: `mute` text (70%),
   `tile` placeholders (5%) and `rule` hairlines (14%).
 - Brand type: headings in Tusker Grotesk, uppercase only (`heading-*`, `display`); body copy in
-  Inter Regular at 1.6 leading, tighter than the earlier 1.85 at the brand's request (`copy`, `copy-lg`; `quote` in Inter italic), the same as
+  Inter Regular at 1.4 leading, tightened twice at the brand's request (from 1.85, then 1.6) (`copy`, `copy-lg`; `quote` in Inter italic), the same as
   interface text; accents in Brilliant Signature (`script`). The brand dropped Libre Baskerville.
 - Inter is used at weight 400, except that buttons (`Button`) are bold (700); the dock's tabs stay
   regular. Buttons, the dock's tabs and the store notice are in sentence case as written in content
@@ -53,7 +53,7 @@ here. This site has no dark mode, no backend and no dashboard.
   used. Pine is the primary accent: bands, headline accents, the footer bar and the `pine` button
   (Buy Pocket Power on the home page). Bronze on linen reads at only 2.8:1, so it suits large headline
   accents; the brand chose it for small text too (the dates on the World page) over a darker bronze.
-- Header: on phones and tablets it holds only the centred logo; navigation lives in a floating
+- Header: on phones and tablets it holds only the logo (centred, except on the home page); navigation lives in a floating
   glass dock at the bottom (Menu, Shop Now, and Search in its own circle), which keeps
   `--dock-space` clear. Over the home hero the dock waits below the screen and slides in the moment the
   page scrolls and the next section starts to show, hiding again back at the top (`hero-in-view`;
@@ -75,15 +75,16 @@ here. This site has no dark mode, no backend and no dashboard.
   columns.
 - Pages that open with a photo hero (`data-hero`, including the home page) start with a transparent
   header whose items turn linen, and Shop Now turns to a linen button (`over-hero`, `over-photo`).
-  Once the page scrolls, the header returns to linen with dark items. On phones the logo stays carbon
-  over the home hero, whose photo is bright behind it.
+  Once the page scrolls, the header returns to linen with dark items. On phones on the home page the
+  logo is carbon (the hero photo is bright behind it) and sits left, in line with the hero's
+  headline and description (`on-home`); every other page centres it.
 - Anything that moves on its own has a static layout under the `still` variant (reduced motion or
   no script).
 - The home page is the hero, the Pocket Power banner (text, then photo on phones; text left, photo
   right from md; its pine Buy Pocket Power button goes to the store), nothing more.
 - The banner's photo is a carousel (`PhotoCarousel`, used whenever `SplitBanner` gets several
   pictures) of the nine Pocket Power shots in `home.pocketPower.images` (the founder portrait and the
-  tile crops are left out). It cross-fades every 5 seconds in a loop, with small round back and forward
+  tile crops are left out). It cross-fades (half a second) every 3.5 seconds in a loop, with small round back and forward
   buttons in clear liquid glass (`glass-clear`) halfway down its sides at every width. It pauses while hovered, focused from the
   keyboard or off screen, does not move on its own under reduced motion, and only loads the photo
   showing and the next one.
@@ -92,7 +93,7 @@ here. This site has no dark mode, no backend and no dashboard.
   the carbon on the side facing the text, over a blurred stretch of its own edge colours. The text
   is linen and left-aligned at every width (button and RISE panel share its left edge; on phones the
   headline and description sit further in, three gutters from the card's edge; at every width the
-  description runs in three lines, as the brand asked: "If you're here, dressing classy" / "probably feels like guesswork." / "You're not alone. It's hard, but I can guide you."), on phones the headline scales with the card so it always sets in three lines (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
+  description runs in four lines, as the brand asked: "If you're here, dressing classy" / "probably feels like guesswork." / "You're not alone. It's hard, but" / "I can guide you."), on phones the headline scales with the card and fills each line before breaking, so it always reads "Dress classy without / guessing. With the RISE / framework." (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
   button (Get Started, to the RISE article) is a bronze pill.
   Under it, in a dark liquid-glass panel as wide as the button, with the hero card's corner radius (`glass-dark`), R I S E and their words (Rhythm, Interest, Structure, Entirety) light up letter by letter in
   one continuous wave, capital then word, like synced lyrics (CSS only; static under `still`).

@@ -95,8 +95,12 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, social }: P
             </nav>
           </div>
 
-          {/* Carbon over the bright top of the home hero's phone photo. */}
-          <HomeLink label="Joshua Black, home" className="col-start-2 max-md:[body:has([data-wide])_&]:text-ink">
+          {/* On phones over the home hero it turns carbon against the bright photo and moves left, in line
+              with the headline (the card's 6px inset plus three gutters). */}
+          <HomeLink
+            label="Joshua Black, home"
+            className="col-start-2 max-md:on-home:col-start-1 max-md:on-home:ml-[calc(var(--gutter)*2+0.375rem)] max-md:on-home:justify-self-start max-md:on-home:text-ink"
+          >
             <Logo decorative className="h-9 lg:h-11" />
           </HomeLink>
 

@@ -6,7 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import type { Picture } from "@/content/types";
 import { cn } from "@/lib/cn";
 
-const interval = 5000;
+const interval = 3500;
 const control =
   "glass-clear absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink/75 transition-colors duration-300 hover:text-ink [@media(scripting:none)]:hidden";
 
@@ -17,7 +17,7 @@ type Props = {
   className?: string;
 };
 
-// Photos cross-fade in a loop, one every five seconds, with back and forward buttons on either side.
+// Photos cross-fade in a loop, one every three and a half seconds, with back and forward buttons on either side.
 // It holds still while hovered, focused from the keyboard or off screen, and never moves on its own
 // for reduced motion.
 export function PhotoCarousel({ pictures, sizes, label, className }: Props) {
@@ -90,7 +90,7 @@ export function PhotoCarousel({ pictures, sizes, label, className }: Props) {
           aria-hidden={at !== index}
           inert={at !== index}
           className={cn(
-            "absolute inset-0 transition-opacity duration-1000 ease-editorial still:transition-none",
+            "absolute inset-0 transition-opacity duration-500 ease-editorial still:transition-none",
             at === index ? "opacity-100" : "opacity-0",
           )}
         >

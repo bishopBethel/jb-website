@@ -69,6 +69,9 @@
 /* Items inside the header while it sits over a hero, which is dark behind every part of it. */
 @custom-variant over-photo (&:where([data-scrolled="false"] *):where(body:has([data-hero]) *));
 
+/* Anything on the home page, which opens with the full-width hero card. */
+@custom-variant on-home (&:where(body:has([data-wide]) *));
+
 /* The dock while a full-screen hero sits at the top of the page; script marks it once the page scrolls. */
 @custom-variant hero-in-view {
   @media (scripting: enabled) {
@@ -246,14 +249,14 @@
 @utility copy {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.4;
   letter-spacing: 0;
 }
 
 @utility copy-lg {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
-  line-height: 1.6;
+  line-height: 1.4;
   letter-spacing: 0;
 }
 
