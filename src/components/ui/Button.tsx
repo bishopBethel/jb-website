@@ -22,7 +22,7 @@ type Props = {
 export function Button({ href, children, external, variant = "outline", size = "default", className, onClick }: Props) {
   const classes = cn(
     "flex items-center justify-center gap-3 rounded-full border text-label font-bold transition-colors duration-300 ease-editorial",
-    size === "compact" ? "h-9 whitespace-nowrap px-3" : "h-12 w-full px-6 max-md:text-base",
+    size === "compact" ? "h-9 whitespace-nowrap px-3" : "h-12 w-full px-6 text-base max-md:text-lg",
     variants[variant],
     className,
   );

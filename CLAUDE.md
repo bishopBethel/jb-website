@@ -47,7 +47,7 @@ here. This site has no dark mode, no backend and no dashboard.
   interface text; accents in Brilliant Signature (`script`). The brand dropped Libre Baskerville.
 - Inter is used at weight 400, except that buttons (`Button`) are bold (700); the dock's tabs stay
   regular. Buttons, the dock's tabs and the store notice are in sentence case as written in content
-  ("Shop Now", "Dress Classy Without Guessing", "Buy Pocket Power", each set as the brand writes it), never forced to capitals; menu links stay in capitals. On phones full-width buttons set their text at 16px instead of the 13px label size. Do not add `font-medium` or any other weight.
+  ("Shop Now", "Get Started", "Buy Pocket Power", each set as the brand writes it), never forced to capitals; menu links stay in capitals. Full-width buttons set their text at 18px on phones and 16px from `md`, larger than the 13px label size. Do not add `font-medium` or any other weight.
 - Design rules: radius 0 and no shadows, except that every button (and the store notice in a
   button's place) is a fully rounded pill. The page ground is linen (the `paper` token); white is never
   used. Pine is the primary accent: bands, headline accents, the footer bar and the `pine` button
@@ -92,8 +92,8 @@ here. This site has no dark mode, no backend and no dashboard.
   the carbon on the side facing the text, over a blurred stretch of its own edge colours. The text
   is linen and left-aligned at every width (button and RISE panel share its left edge; on phones the
   headline and description sit further in, three gutters from the card's edge; at every width the
-  description starts a new line at "likely" and at "You're", as the brand asked), the headline fits three lines on phones from 360px wide (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
-  button (Dress Classy Without Guessing, to the RISE article) is a bronze pill.
+  description runs in three lines, as the brand asked: "If you're here, dressing classy" / "probably feels like guesswork." / "You're not alone. It's hard, but I can guide you."), on phones the headline scales with the card so it always sets in three lines (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
+  button (Get Started, to the RISE article) is a bronze pill.
   Under it, in a dark liquid-glass panel as wide as the button, with the hero card's corner radius (`glass-dark`), R I S E and their words (Rhythm, Interest, Structure, Entirety) light up letter by letter in
   one continuous wave, capital then word, like synced lyrics (CSS only; static under `still`).
   From `md` the photo is pinned to the card's left half at full height.

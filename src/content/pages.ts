@@ -20,8 +20,8 @@ export const home = {
       { text: "Dress classy without guessing.", tone: "bronze" },
     ] satisfies Accent[],
     // Each line starts on its own line at every width.
-    body: ["If you've come to this site, you", "likely feel like styling yourself is trial and error.", "You're not alone. It's hard, but I can help."],
-    link: { label: "Dress Classy Without Guessing", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
+    body: ["If you're here, dressing classy", "probably feels like guesswork.", "You're not alone. It's hard, but I can guide you."],
+    link: { label: "Get Started", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
     rise: ["Rhythm", "Interest", "Structure", "Entirety"],
     image: { id: "ed-tan-01", crop: { x: 40, y: 30, top: 16 } } satisfies ImageRef,
   },
