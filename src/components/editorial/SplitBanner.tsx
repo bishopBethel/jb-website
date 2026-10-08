@@ -70,7 +70,7 @@ export function SplitBanner({
   };
 
   return (
-    <section className={cn("group grid md:grid-cols-2", inset && "md:mx-4 md:mt-4 lg:mt-24")}>
+    <section className={cn("group grid md:grid-cols-2", inset && "mt-8 md:mx-4 md:mt-4 lg:mt-24")}>
       <div className={cn("flex items-center", colours.panel, reverse && "md:order-2")}>
         <div className="w-full max-w-2xl p-(--caption-pad) py-16 md:py-(--caption-pad)">
           {kicker && <p className="mb-5 text-tiny uppercase opacity-70">{kicker}</p>}

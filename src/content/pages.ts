@@ -17,7 +17,7 @@ export const home = {
     title: "Dress classy without guessing. With the RISE framework.",
     accents: [
       { text: "RISE", tone: "pine" },
-      { text: "without guessing", tone: "bronze" },
+      { text: "Dress classy without guessing.", tone: "bronze" },
     ] satisfies Accent[],
     // Each line starts on its own line at every width.
     body: ["If you've come to this site, you", "likely feel like styling yourself is trial and error.", "You're not alone. It's hard, but I can help."],

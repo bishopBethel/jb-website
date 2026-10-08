@@ -92,7 +92,7 @@ here. This site has no dark mode, no backend and no dashboard.
   the carbon on the side facing the text, over a blurred stretch of its own edge colours. The text
   is linen and left-aligned at every width (button and RISE panel share its left edge; on phones the
   headline and description sit further in, three gutters from the card's edge; at every width the
-  description starts a new line at "likely" and at "You're", as the brand asked), the headline fits three lines on phones from 360px wide (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "without guessing" is bronze, and the
+  description starts a new line at "likely" and at "You're", as the brand asked), the headline fits three lines on phones from 360px wide (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
   button (Dress Classy Without Guessing, to the RISE article) is a bronze pill.
   Under it, in a dark liquid-glass panel as wide as the button, with the hero card's corner radius (`glass-dark`), R I S E and their words (Rhythm, Interest, Structure, Entirety) light up letter by letter in
   one continuous wave, capital then word, like synced lyrics (CSS only; static under `still`).
