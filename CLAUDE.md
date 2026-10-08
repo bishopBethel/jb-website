@@ -81,6 +81,12 @@ here. This site has no dark mode, no backend and no dashboard.
   no script).
 - The home page is the hero, the Pocket Power banner (text, then photo on phones; text left, photo
   right from md; its pine Buy Pocket Power button goes to the store), nothing more.
+- The banner's photo is a carousel (`PhotoCarousel`, used whenever `SplitBanner` gets several
+  pictures) of the nine Pocket Power shots in `home.pocketPower.images` (the founder portrait and the
+  tile crops are left out). It cross-fades every 5 seconds in a loop, with small round back and forward
+  buttons in clear liquid glass (`glass-clear`) halfway down its sides at every width. It pauses while hovered, focused from the
+  keyboard or off screen, does not move on its own under reduced motion, and only loads the photo
+  showing and the next one.
 - The home hero is a rounded carbon card floating on linen at every width (6px from the screen's
   edges on phones). Its photo dissolves into
   the carbon on the side facing the text, over a blurred stretch of its own edge colours. The text

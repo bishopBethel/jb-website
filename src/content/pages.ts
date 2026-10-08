@@ -29,7 +29,18 @@ export const home = {
   pocketPower: {
     ...pocketPower,
     kicker: "New",
-    image: { id: "pp-rust" } satisfies ImageRef,
+    // Shown in turn, in this order.
+    images: [
+      { id: "pp-rust" },
+      { id: "pp-box-open" },
+      { id: "pp-fan" },
+      { id: "pp-drape" },
+      { id: "pp-rail" },
+      { id: "pp-box-stack" },
+      { id: "pp-closeup" },
+      { id: "pp-noir" },
+      { id: "pp-box-engraved" },
+    ] satisfies ImageRef[],
     cta: { label: "Buy Pocket Power", href: shopLink.href } satisfies LinkItem,
   },
 };

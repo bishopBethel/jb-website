@@ -22,7 +22,7 @@ export default function Home() {
           highlight={home.pocketPower.highlight}
           accent={home.pocketPower.accent}
           body={home.pocketPower.body}
-          picture={picture(home.pocketPower.image)}
+          picture={home.pocketPower.images.map(picture)}
           cta={home.pocketPower.cta}
           inset
         />

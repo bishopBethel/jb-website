@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { PhotoCarousel } from "@/components/editorial/PhotoCarousel";
 import { Button } from "@/components/ui/Button";
 import { Frame } from "@/components/ui/Frame";
 import { TextLink } from "@/components/ui/TextLink";
@@ -22,7 +23,8 @@ type Props = {
   accent?: string;
   kicker?: string;
   body?: string;
-  picture: Picture;
+  /** One photo, or several shown in turn as a carousel. */
+  picture: Picture | Picture[];
   links?: LinkItem[];
   /** A pine button under the text. */
   cta?: LinkItem;
@@ -52,6 +54,8 @@ export function SplitBanner({
 }: Props) {
   const colours = tones[tone];
   const Heading = level;
+  const photos = Array.isArray(picture) ? picture : [picture];
+  const rounded = inset && "md:rounded-2xl md:[clip-path:inset(0_round_1rem)]";
 
   const paint = (line: string) => {
     if (!highlight || !line.includes(highlight)) return line;
@@ -100,13 +104,11 @@ export function SplitBanner({
           )}
         </div>
       </div>
-      <Frame
-        picture={picture}
-        sizes={sizes.half}
-        priority={priority}
-        quality={priority ? 85 : 80}
-        className={cn(inset && "md:rounded-2xl md:[clip-path:inset(0_round_1rem)]")}
-      />
+      {photos.length > 1 ? (
+        <PhotoCarousel pictures={photos} sizes={sizes.half} label={`${lines.join(" ")} photos`} className={cn(rounded)} />
+      ) : (
+        <Frame picture={photos[0]} sizes={sizes.half} priority={priority} quality={priority ? 85 : 80} className={cn(rounded)} />
+      )}
     </section>
   );
 }
