@@ -36,15 +36,15 @@ export function IntroHero({ title, accents, body, link, rise, picture }: Props) 
       data-wide
       className="relative isolate mx-1.5 -mt-[calc(var(--header-h)-0.375rem)] grid min-h-[calc(100svh-0.75rem)] grid-rows-[minmax(10rem,1fr)_auto] overflow-hidden rounded-2xl bg-ink text-paper [clip-path:inset(0_round_1rem)] md:mx-4 md:-mt-[calc(var(--header-h)-1rem)] md:min-h-[min(calc(100svh-2rem),calc(62.5vw+var(--header-h)))] md:grid-cols-2 md:grid-rows-none"
     >
-      {/* On phones the photo runs from his left shoulder to just past his raised hand, his head just under
-          the logo, and fades out below his hands; short frames zoom out until his head clears the logo. */}
+      {/* On phones the photo zooms in until his raised hand nears the card's right edge, his head just under
+          the logo, as far as the frame allows with his hands ending where the headline begins. */}
       <Frame
         picture={picture}
         sizes={sizes.hero}
         priority
         quality={85}
         aspect="w-full md:absolute md:inset-y-0 md:left-0 md:w-1/2"
-        className="z-10 @container-[size] max-md:bg-transparent max-md:[--h:clamp(151cqw,max(429cqh_-_627px,min(429cqh_-_464px,250cqw_-_205px)),267cqw)] max-md:[--t:clamp(28px,28px_+_3*(0.2*var(--h)_-_50cqw_+_41px),66px)] max-md:[&_img]:h-(--h)! max-md:[&_img]:w-[calc(var(--h)*0.8)]! max-md:[&_img]:max-w-none max-md:[&_img]:object-center! max-md:[&_img]:top-[calc(var(--t)_-_0.237*var(--h))]! max-md:[&_img]:left-[calc(-0.136*var(--h))]! max-md:[&_img]:[mask-image:linear-gradient(to_bottom,#000_47.5%,transparent_53.5%)] md:[&_img]:origin-[34%_26%] md:[&_img]:scale-[1.8] [mask-image:linear-gradient(to_bottom,#000_max(40%,calc(100%-6rem)),transparent_calc(100%-1.5rem))] md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]"
+        className="z-10 @container-[size] max-md:bg-transparent max-md:[--h:max(151cqw,min(274cqw_-_27px,429cqh_-_549px))] max-md:[&_img]:h-(--h)! max-md:[&_img]:w-[calc(var(--h)*0.8)]! max-md:[&_img]:max-w-none max-md:[&_img]:object-center! max-md:[&_img]:top-[calc(66px_-_0.237*var(--h))]! max-md:[&_img]:left-[calc(-0.136*var(--h))]! max-md:[&_img]:[mask-image:linear-gradient(to_bottom,#000_47.5%,transparent_53.5%)] md:[&_img]:origin-[34%_26%] md:[&_img]:scale-[1.8] [mask-image:linear-gradient(to_bottom,#000_max(40%,calc(100%-6rem)),transparent_calc(100%-1.5rem))] md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]"
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-40 bg-linear-to-b md:block from-ink/45 to-transparent md:right-1/2 md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]" />
       <div className="relative gutter -mt-16 flex flex-col items-start justify-center pb-(--gutter) text-left md:col-start-2 md:mt-0 md:px-(--caption-pad) md:pb-16 md:pt-[calc(4rem+var(--header-h))]">
@@ -64,7 +64,11 @@ export function IntroHero({ title, accents, body, link, rise, picture }: Props) 
           <h1 className="heading-lg md:max-w-[22ch] md:text-balance leading-[1.16] max-md:text-[length:min(calc((100vw-4.25rem)/8.5),4.25rem)]">
             <Highlight text={title} marks={accents.map((accent) => ({ text: accent.text, className: tones[accent.tone] }))} />
           </h1>
-          <p className="copy-lg mt-4 max-w-[40ch] md:mt-5">
+        </div>
+        {/* On phones the description scales with the card, its longest line filling most of the width, and the
+            button takes that line's width (the block shrinks to fit it). */}
+        <div className="relative z-20 w-full max-md:ml-[calc(var(--gutter)*2)] max-md:w-fit">
+          <p className="copy-lg mt-1 max-w-[40ch] leading-[1.25] md:mt-5 max-md:max-w-none max-md:text-[length:min(calc((100vw-4.25rem)/16),1.5rem)]">
             {body.map((line, index) => (
               <Fragment key={line}>
                 {index > 0 && " "}
@@ -72,11 +76,11 @@ export function IntroHero({ title, accents, body, link, rise, picture }: Props) 
               </Fragment>
             ))}
           </p>
-        </div>
-        <div className="relative z-20 mt-6 w-full md:mt-8 md:max-w-sm">
-          <Button href={link.href} variant="bronze">
-            {link.label}
-          </Button>
+          <div className="mt-4 w-full md:mt-8 md:max-w-sm">
+            <Button href={link.href} variant="bronze">
+              {link.label}
+            </Button>
+          </div>
         </div>
         <ul
           aria-label="What RISE stands for"

@@ -91,20 +91,21 @@ here. This site has no dark mode, no backend and no dashboard.
 - The home hero is a rounded carbon card floating on linen at every width (6px from the screen's
   edges on phones). Its photo dissolves into
   the carbon on the side facing the text, over a blurred stretch of its own edge colours. The text
-  is linen and left-aligned at every width (button and RISE panel share its left edge; on phones the
+  is linen and left-aligned at every width (button and RISE panel share its left edge; on phones the button is exactly as wide as the description's
+  longest line, the RISE panel spans the card inside its gutters, and the
   headline and description sit further in, three gutters from the card's edge; at every width the
-  description runs in four lines, as the brand asked: "If you're here, dressing classy" / "probably feels like guesswork." / "You're not alone. It's hard, but" / "I can guide you."), on phones the headline scales with the card and fills each line before breaking, so it always reads "Dress classy without / guessing. With the RISE / framework." (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
+  description runs in four lines, as the brand asked: "If you're here, dressing classy" / "probably feels like guesswork." / "You're not alone. It's hard, but" / "I can guide you."; on phones it scales with the card so its longest line fills about 90% of the text width; it is set at 1.25 leading, tighter than other copy), on phones the headline scales with the card and fills each line before breaking, so it always reads "Dress classy without / guessing. With the RISE / framework." (it is only width-capped from `md`), RISE is underlined (pine would sink into carbon), "Dress classy without guessing." is bronze, and the
   button (Get Started, to the RISE article) is a bronze pill.
   Under it, in a dark liquid-glass panel as wide as the button, with the hero card's corner radius (`glass-dark`), R I S E and their words (Rhythm, Interest, Structure, Entirety) light up letter by letter in
   one continuous wave, capital then word, like synced lyrics (CSS only; static under `still`).
   From `md` the photo is pinned to the card's left half at full height.
 - On phones the card fills the screen (the dock is hidden over it) so the button shows without
-  scrolling; the photo is a close crop from his left shoulder to just past his raised right hand (the
-  brand's own framing on a Pro Max), his head just under the logo and his welcoming hands clear above
-  the headline; it fades into carbon just below his hands (its frame has no placeholder colour there),
-  so the headline always sits on carbon, and it takes what the text leaves. Shorter screens zoom out until his hands fit, and
-  once his head clears the logo's side it rises beside it. (The brand tried its own 4:5 crop
-  and went back to this one.) From `md` it is zoomed to roughly waist up.
+  scrolling. The photo zooms in until his raised hand is about 10px from the card's right edge, his
+  head just under the left-hand logo, as far as the frame's height allows with his hands ending where
+  the headline begins (shorter phones stop sooner). It fades into carbon just below his hands (its
+  frame has no placeholder colour there), so the headline sits on carbon. The headline sits close
+  over the description, and Get Started is 16px below it, like the RISE panel below the button.
+  (The brand tried its own 4:5 crop and went back to this one.) From `md` it is zoomed to roughly waist up.
 - Borrow Armani's layout, never its assets, fonts or copy.
 - Code comments are rare and at most two lines.
 
