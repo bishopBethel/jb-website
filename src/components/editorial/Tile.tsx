@@ -57,7 +57,7 @@ export function Tile({ title, kicker, href, picture, links, sizes, caption = "ov
       <Link href={href} tabIndex={-1} aria-hidden="true" className="absolute inset-0" />
       {/* Caption rides the viewport's bottom edge while the tile's lower part scrolls past. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex h-2/3 items-end">
-        <div className="sticky bottom-0 w-full bg-linear-to-t from-black/60 via-black/25 to-transparent p-(--caption-pad) pt-24">
+        <div className="sticky bottom-0 w-full bg-linear-to-t from-ink/60 via-ink/25 to-transparent p-(--caption-pad) pt-24">
           {kicker && <p className="mb-2 text-tiny uppercase">{kicker}</p>}
           <h2 className="heading-md">{title}</h2>
           <ul className="pointer-events-auto mt-4 flex flex-wrap gap-x-6 gap-y-2 lg:mt-6">

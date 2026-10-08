@@ -7,10 +7,10 @@ import { cn } from "@/lib/cn";
 import { sizes } from "@/lib/sizes";
 
 const tones = {
-  linen: { panel: "bg-linen text-ink", highlight: "text-bronze-ink", accent: "text-pine" },
+  linen: { panel: "bg-linen text-ink", highlight: "text-bronze", accent: "text-pine" },
   pine: { panel: "bg-pine text-linen", highlight: "text-bronze", accent: "text-linen" },
   ink: { panel: "bg-ink text-linen", highlight: "text-bronze", accent: "text-linen" },
-  paper: { panel: "bg-paper text-ink", highlight: "text-bronze-ink", accent: "text-pine" },
+  paper: { panel: "bg-paper text-ink", highlight: "text-bronze", accent: "text-pine" },
 };
 
 type Props = {

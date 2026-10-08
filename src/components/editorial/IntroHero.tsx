@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Button } from "@/components/ui/Button";
 import { Frame } from "@/components/ui/Frame";
 import { Highlight } from "@/components/ui/Highlight";
@@ -18,7 +19,8 @@ const step = 1.5;
 type Props = {
   title: string;
   accents: Accent[];
-  body: string;
+  /** Lines that each start a new line. */
+  body: string[];
   link: LinkItem;
   /** The words behind R, I, S and E, shown under the button. */
   rise: string[];
@@ -28,37 +30,47 @@ type Props = {
 export function IntroHero({ title, accents, body, link, rise, picture }: Props) {
   return (
     // A carbon card floating on linen that slides under the header, transparent over it until the page
-    // scrolls. On phones it fills the screen above the dock; from md the photo takes the left half.
+    // scrolls. On phones it fills the screen (the dock waits below it); from md the photo takes the left half.
     <section
       data-hero
       data-wide
-      className="relative isolate mx-2.5 -mt-[calc(var(--header-h)-0.625rem)] grid min-h-[calc(100svh-0.625rem-var(--dock-space))] grid-rows-[minmax(10rem,1fr)_auto] overflow-hidden rounded-2xl bg-ink text-paper [clip-path:inset(0_round_1rem)] md:mx-4 md:-mt-[calc(var(--header-h)-1rem)] md:min-h-[min(calc(100svh-2rem),calc(62.5vw+var(--header-h)))] md:grid-cols-2 md:grid-rows-none"
+      className="relative isolate mx-1.5 -mt-[calc(var(--header-h)-0.375rem)] grid min-h-[calc(100svh-0.75rem)] grid-rows-[minmax(10rem,1fr)_auto] overflow-hidden rounded-2xl bg-ink text-paper [clip-path:inset(0_round_1rem)] md:mx-4 md:-mt-[calc(var(--header-h)-1rem)] md:min-h-[min(calc(100svh-2rem),calc(62.5vw+var(--header-h)))] md:grid-cols-2 md:grid-rows-none"
     >
-      {/* On phones the photo is sized to its frame's height: his head sits high, beside the logo, and his
-          hands end above the fade, zooming in only as far as the frame allows. */}
+      {/* On phones the photo runs from his left shoulder to just past his raised hand, his head just under
+          the logo, and fades out below his hands; short frames zoom out until his head clears the logo. */}
       <Frame
         picture={picture}
         sizes={sizes.hero}
         priority
         quality={85}
         aspect="w-full md:absolute md:inset-y-0 md:left-0 md:w-1/2"
-        className="z-10 @container-[size] max-md:[--h:clamp(125cqw,408cqh_-_510px,240cqw)] max-md:[&_img]:h-(--h)! max-md:[&_img]:w-[calc(var(--h)*0.8)]! max-md:[&_img]:max-w-none max-md:[&_img]:object-center! max-md:[&_img]:top-[calc(28px_-_0.23*var(--h))]! max-md:[&_img]:left-[clamp(100cqw_-_0.8*var(--h),31cqw_-_0.296*var(--h),0px)]! md:[&_img]:origin-[34%_26%] md:[&_img]:scale-[1.8] [mask-image:linear-gradient(to_bottom,#000_max(40%,calc(100%-8rem)),transparent_calc(100%-3rem))] md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]"
+        className="z-10 @container-[size] max-md:bg-transparent max-md:[--h:clamp(151cqw,max(429cqh_-_627px,min(429cqh_-_464px,250cqw_-_205px)),267cqw)] max-md:[--t:clamp(28px,28px_+_3*(0.2*var(--h)_-_50cqw_+_41px),66px)] max-md:[&_img]:h-(--h)! max-md:[&_img]:w-[calc(var(--h)*0.8)]! max-md:[&_img]:max-w-none max-md:[&_img]:object-center! max-md:[&_img]:top-[calc(var(--t)_-_0.237*var(--h))]! max-md:[&_img]:left-[calc(-0.136*var(--h))]! max-md:[&_img]:[mask-image:linear-gradient(to_bottom,#000_47.5%,transparent_53.5%)] md:[&_img]:origin-[34%_26%] md:[&_img]:scale-[1.8] [mask-image:linear-gradient(to_bottom,#000_max(40%,calc(100%-6rem)),transparent_calc(100%-1.5rem))] md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b md:h-40 from-black/45 to-transparent md:right-1/2 md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]" />
-      <div className="relative gutter -mt-16 flex flex-col items-center justify-center pb-(--gutter) text-center md:col-start-2 md:mt-0 md:px-(--caption-pad) md:pb-16 md:pt-[calc(4rem+var(--header-h))]">
-        {/* The photo's edge colours, stretched and softened, run under its fade and settle into carbon. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-40 bg-linear-to-b md:block from-ink/45 to-transparent md:right-1/2 md:[mask-image:linear-gradient(to_right,#000_72%,transparent)]" />
+      <div className="relative gutter -mt-16 flex flex-col items-start justify-center pb-(--gutter) text-left md:col-start-2 md:mt-0 md:px-(--caption-pad) md:pb-16 md:pt-[calc(4rem+var(--header-h))]">
+        {/* The photo's edge colours, stretched and softened, run under its fade and settle into carbon (on
+            phones by the headline, so it always sits on carbon). */}
         <div aria-hidden="true" className="absolute inset-x-0 -top-36 bottom-0 -z-10 overflow-hidden md:inset-y-0 md:-left-[28%] md:right-0">
           <div
             className="absolute -inset-10 bg-[length:100%_1000%] bg-bottom bg-no-repeat blur-2xl saturate-150 md:bg-[length:1000%_100%] md:bg-right"
             style={{ backgroundImage: `url(${picture.src.blurDataURL})` }}
           />
-          <div className="absolute inset-0 bg-linear-to-b from-ink/0 to-ink to-35% md:bg-linear-to-r md:to-60%" />
+          <div className="absolute inset-0 bg-linear-to-b from-ink/0 to-ink to-35% max-md:to-[9rem] md:bg-linear-to-r md:to-60%" />
         </div>
-        {/* On phones the text rises over the photo's fade, so it sits above the photo; the blend stays below. */}
-        <h1 className="heading-lg relative z-20 md:max-w-[22ch] text-balance leading-[1.16]">
-          <Highlight text={title} marks={accents.map((accent) => ({ text: accent.text, className: tones[accent.tone] }))} />
-        </h1>
-        <p className="copy-lg relative z-20 mt-4 max-w-[40ch] md:mt-5">{body}</p>
+        {/* On phones the words rise over the photo's fade, three gutters in from the card's left edge. */}
+        <div className="relative z-20 max-md:-mr-[calc(var(--gutter)/2)] max-md:pl-[calc(var(--gutter)*2)]">
+          <h1 className="heading-lg md:max-w-[22ch] text-balance leading-[1.16]">
+            <Highlight text={title} marks={accents.map((accent) => ({ text: accent.text, className: tones[accent.tone] }))} />
+          </h1>
+          <p className="copy-lg mt-4 max-w-[40ch] md:mt-5">
+            {body.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && " "}
+                <span className="block text-balance">{line}</span>
+              </Fragment>
+            ))}
+          </p>
+        </div>
         <div className="relative z-20 mt-6 w-full md:mt-8 md:max-w-sm">
           <Button href={link.href} variant="bronze">
             {link.label}

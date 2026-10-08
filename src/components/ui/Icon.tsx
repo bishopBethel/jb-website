@@ -26,6 +26,20 @@ const glyphs = {
       <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
     </>
   ),
+  facebook: <path d="M15.5 3.5h-2.2a3.8 3.8 0 0 0-3.8 3.8v2.9H7v3.3h2.5v7h3.3v-7h2.6l.6-3.3h-3.2V7.6a1 1 0 0 1 1-1h1.7Z" />,
+  x: (
+    <>
+      <path d="M4.5 4h4.2l10.8 16h-4.2Z" />
+      <path d="M19.5 4 13.4 10.6M10.7 13.4 4.5 20" />
+    </>
+  ),
+  linkedin: (
+    <>
+      <path d="M15.5 9a5 5 0 0 1 5 5v6.5h-3.3V14a1.7 1.7 0 0 0-3.4 0v6.5h-3.3V14a5 5 0 0 1 5-5Z" />
+      <rect x="3.5" y="9.5" width="3.3" height="11" />
+      <circle cx="5.15" cy="5.4" r="1.75" />
+    </>
+  ),
   "grid-2": (
     <>
       <rect x="4" y="4" width="7" height="16" />

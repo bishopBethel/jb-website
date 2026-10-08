@@ -23,7 +23,7 @@ export default function ContactPage() {
         <ol className="mt-6 border-t border-rule">
           {contact.steps.map((step, index) => (
             <li key={step.title} className="grid grid-cols-[3rem_1fr] items-baseline gap-x-4 border-b border-rule py-6">
-              <span aria-hidden="true" className="display-bold text-[2.75rem] leading-none text-bronze-ink">
+              <span aria-hidden="true" className="display-bold text-[2.75rem] leading-none text-bronze">
                 {index + 1}
               </span>
               <div>

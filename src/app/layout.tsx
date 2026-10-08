@@ -2,12 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { SiteNav } from "@/components/layout/SiteNav";
-import type { IconName } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { searchIndex, site } from "@/content";
 import { footerColumns, menuLinks, shopLink } from "@/content/navigation";
 import type { LinkItem } from "@/content/types";
-import { instagramProfile } from "@/lib/social";
+import { linkedProfiles, socialLinks } from "@/lib/social";
 import { inter, signature, tusker } from "./fonts";
 import "./globals.css";
 
@@ -29,10 +28,6 @@ export const viewport: Viewport = {
   themeColor: "#f5f1e8",
   viewportFit: "cover",
 };
-
-type IconLink = LinkItem & { icon: IconName };
-
-const social: IconLink[] = [{ label: "Instagram", href: instagramProfile, icon: "instagram", external: true }];
 
 const suggestions: LinkItem[] = [
   { label: "Pocket Power", href: "/collection/pocket-power" },
@@ -61,12 +56,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           searchIndex={searchIndex}
           suggestions={suggestions}
           shop={shopLink}
-          extras={social}
+          social={socialLinks}
         />
         <main id="main" className="page-width flex-1">
           {children}
         </main>
-        <Footer columns={footerColumns} social={social} country={site.country} name={site.name} />
+        <Footer columns={footerColumns} social={socialLinks} name={site.name} registration={site.registration} />
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -77,7 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             description: site.description,
             founder: { "@type": "Person", name: site.founder.name },
             address: { "@type": "PostalAddress", addressCountry: "NG" },
-            sameAs: [instagramProfile],
+            sameAs: linkedProfiles.map((link) => link.href),
           }}
         />
       </body>

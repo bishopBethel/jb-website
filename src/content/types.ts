@@ -81,6 +81,13 @@ export type LinkItem = {
   external?: boolean;
 };
 
+/** A social profile. Without a link yet, its icon shows in the menu but leads nowhere. */
+export type SocialLink = {
+  label: string;
+  icon: "instagram" | "facebook" | "x" | "linkedin";
+  href?: string;
+};
+
 export type SiteConfig = {
   name: string;
   tagline: string;
@@ -88,9 +95,14 @@ export type SiteConfig = {
   url: string;
   locale: string;
   country: string;
+  /** Company registration (RC) number, shown under the logo in the footer. */
+  registration: string;
   showPrices: boolean;
   contact: {
     instagramHandle: string;
+    facebook?: string;
+    x?: string;
+    linkedin?: string;
     email?: string;
   };
   founder: { name: string; role: string };

@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, type MouseEvent } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { Icon, type IconName } from "@/components/ui/Icon";
-import type { LinkItem, SearchEntry } from "@/content/types";
+import { HomeLink } from "@/components/ui/HomeLink";
+import { Icon } from "@/components/ui/Icon";
+import type { LinkItem, SearchEntry, SocialLink } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { MenuOverlay } from "./MenuOverlay";
 import { SearchOverlay } from "./SearchOverlay";
@@ -19,13 +20,14 @@ type Props = {
   searchIndex: SearchEntry[];
   suggestions: LinkItem[];
   shop: LinkItem;
-  extras: (LinkItem & { icon: IconName })[];
+  social: SocialLink[];
 };
 
-export function SiteNav({ menuLinks, searchIndex, suggestions, shop, extras }: Props) {
+export function SiteNav({ menuLinks, searchIndex, suggestions, shop, social }: Props) {
   const pathname = usePathname();
   const onShop = pathname === shop.href;
   const header = useRef<HTMLElement>(null);
+  const dock = useRef<HTMLElement>(null);
   const menu = useRef<HTMLDialogElement>(null);
   const search = useRef<HTMLDialogElement>(null);
 
@@ -33,8 +35,12 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, extras }: P
     const el = header.current;
     if (!el) return;
 
+    // The header turns linen, and over a full-screen hero the dock slides in, as soon as the page moves
+    // and the next section starts to show. The few pixels absorb jitter at the top.
     const onScroll = () => {
-      el.dataset.scrolled = String(window.scrollY > 40);
+      const moved = window.scrollY > 4;
+      el.dataset.scrolled = String(moved);
+      dock.current?.toggleAttribute("data-past-hero", moved);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -89,9 +95,10 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, extras }: P
             </nav>
           </div>
 
-          <Link href="/" aria-label="Joshua Black, home" className="col-start-2">
+          {/* Carbon over the bright top of the home hero's phone photo. */}
+          <HomeLink label="Joshua Black, home" className="col-start-2 max-md:[body:has([data-wide])_&]:text-ink">
             <Logo decorative className="h-9 lg:h-11" />
-          </Link>
+          </HomeLink>
 
           <div className="col-start-3 hidden items-center justify-end gap-7 lg:flex lg:h-9">
             <button type="button" onClick={openSearch} aria-haspopup="dialog" className="flex items-center gap-2 text-body">
@@ -111,13 +118,17 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, extras }: P
       </header>
 
       {/* Below lg, navigation lives in a floating dock at the bottom of the screen. */}
-      <nav aria-label="Quick links" className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 flex gap-2 text-ink lg:hidden">
+      <nav
+        ref={dock}
+        aria-label="Quick links"
+        className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 flex gap-2 text-ink transition-[translate,opacity,visibility] duration-500 ease-editorial still:transition-none hero-in-view:invisible hero-in-view:translate-y-[calc(100%+2rem)] hero-in-view:opacity-0 lg:hidden"
+      >
         <div className="glass flex h-14 flex-1 items-center rounded-full px-2">
           <button type="button" onClick={openMenu} aria-haspopup="dialog" className={cn(tab, !onShop && tabActive)}>
             <Icon name="menu" size={18} />
             Menu
           </button>
-          <Link href={shop.href} aria-current={onShop ? "page" : undefined} className={cn(tab, "uppercase", onShop && tabActive)}>
+          <Link href={shop.href} aria-current={onShop ? "page" : undefined} className={cn(tab, onShop && tabActive)}>
             <Icon name="bag" size={18} />
             {shop.label}
           </Link>
@@ -133,7 +144,7 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, extras }: P
         </button>
       </nav>
 
-      <MenuOverlay ref={menu} links={menuLinks} cta={shop} extras={extras} onSearch={searchFromMenu} />
+      <MenuOverlay ref={menu} links={menuLinks} cta={shop} social={social} onSearch={searchFromMenu} />
       <SearchOverlay ref={search} index={searchIndex} suggestions={suggestions} />
     </>
   );

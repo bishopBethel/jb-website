@@ -14,13 +14,14 @@ const pocketPower = {
 
 export const home = {
   intro: {
-    title: "Dress with RISE: the styling framework that makes your outfits look effortless",
+    title: "Dress classy without guessing. With the RISE framework.",
     accents: [
       { text: "RISE", tone: "pine" },
-      { text: "makes your outfits look effortless", tone: "bronze" },
+      { text: "without guessing", tone: "bronze" },
     ] satisfies Accent[],
-    body: "If you've come to this site, you likely feel like styling yourself is trial and error. You're not alone. It's hard, but I can help.",
-    link: { label: "Learn RISE", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
+    // Each line starts on its own line at every width.
+    body: ["If you've come to this site, you", "likely feel like styling yourself is trial and error.", "You're not alone. It's hard, but I can help."],
+    link: { label: "Dress Classy Without Guessing", href: "/style-guide/the-rise-framework" } satisfies LinkItem,
     rise: ["Rhythm", "Interest", "Structure", "Entirety"],
     image: { id: "ed-tan-01", crop: { x: 40, y: 30, top: 16 } } satisfies ImageRef,
   },

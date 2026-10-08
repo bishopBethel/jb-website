@@ -6,7 +6,7 @@ const variants = {
   outline: "border-ink bg-transparent text-ink hover:bg-ink hover:text-paper",
   solid: "border-ink bg-ink text-paper hover:bg-paper hover:text-ink",
   pine: "border-pine bg-pine text-paper hover:bg-transparent hover:text-pine",
-  bronze: "border-bronze bg-bronze text-ink hover:bg-transparent hover:text-bronze",
+  bronze: "border-bronze bg-bronze text-ink hover:bg-transparent hover:text-bronze focus-visible:outline-bronze",
 };
 
 type Props = {
@@ -21,8 +21,8 @@ type Props = {
 
 export function Button({ href, children, external, variant = "outline", size = "default", className, onClick }: Props) {
   const classes = cn(
-    "flex items-center justify-center gap-3 rounded-full border text-label uppercase transition-colors duration-300 ease-editorial",
-    size === "compact" ? "h-9 whitespace-nowrap px-3" : "h-12 w-full px-6",
+    "flex items-center justify-center gap-3 rounded-full border text-label font-bold transition-colors duration-300 ease-editorial",
+    size === "compact" ? "h-9 whitespace-nowrap px-3" : "h-12 w-full px-6 max-md:text-base",
     variants[variant],
     className,
   );

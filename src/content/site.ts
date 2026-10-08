@@ -12,12 +12,14 @@ export const site: SiteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? deployedUrl ?? "http://localhost:3000",
   locale: "en-NG",
   country: "Nigeria",
+  registration: "9286208",
 
   // Set to true to show prices. Products without a price stay blank.
   showPrices: false,
 
   contact: {
     instagramHandle: "byjoshuablack",
+    // Full profile links for Facebook, X and LinkedIn are still to come from the brand.
   },
 
   founder: { name: "Opeyemi Okediji", role: "Founder" },
