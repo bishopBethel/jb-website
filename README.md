@@ -145,12 +145,34 @@ This weight is paid for and was not in the supplied files, so small headings and
 
 Small headings and numerals switch to the bold weight on their own.
 
+## Run the online store
+
+Only the Pocket Power box is sold online. Everything is managed under **Shop** in the admin.
+
+**Before opening**
+1. Open a Paystack business account and save its secret key as the Worker secret
+   `PAYSTACK_SECRET_KEY` (type Secret). Start with the test key (`sk_test_…`).
+2. Write the policies under **Shop → Policies**: delivery, returns and refunds, terms of sale and
+   privacy. Paystack reviews them before it activates payments.
+3. In Cloudflare, onboard byjoshuablack.com under **Email Service → Email Sending**, so order
+   emails can be sent from orders@byjoshuablack.com.
+4. On the Pocket Power product, set the **price** and tick **Can be bought online**; set the
+   quantity under **Shop → Stock**; set the two delivery fees and the alert address under
+   **Shop → Shop settings**.
+5. Test: signed in to the admin, open `/checkout` and pay with a Paystack test card.
+6. When Paystack approves the account, replace the secret with the live key, add the webhook URL
+   `https://byjoshuablack.com/api/paystack/webhook` in Paystack's settings, place one real order,
+   then set **Shop settings → status** to Open.
+
+**Day to day:** paid orders appear under **Shop → Orders** (and in the alert email). Set each one's
+**Delivery** to Dispatched, then Delivered, with a note such as the courier or tracking number. A
+negative stock means more were sold than were in stock: contact those buyers.
+
 ## Before launch
 
 - Set `NEXT_PUBLIC_SITE_URL` to the live address, for example `https://your-domain.com`, in the
   Worker's build variables. Without it, the sitemap and shared previews point at localhost.
-- Connect the online store, and replace the "Online store opening soon" notice on the product
-  and fila pages with its order buttons.
+- Open the online store (see "Run the online store" below).
 - Replace the working names of the ten squares (Products in the admin).
 - Photograph the three squares marked `needsPhoto`.
 - Replace the founder portraits with the original camera files. The current ones came from

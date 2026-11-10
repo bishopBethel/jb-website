@@ -49,6 +49,8 @@ export type Product = {
   tile: ImageRef;
   gallery: ImageRef[];
   price?: Money;
+  /** Shows the Buy button while the shop is open. */
+  purchasable?: boolean;
   needsPhoto?: boolean;
 };
 
@@ -180,6 +182,44 @@ export type ContactContent = {
   image: ImageRef;
 };
 
+export type ShopContent = {
+  open: boolean;
+  maxPerOrder: number;
+  zones: { name: string; fee: number; states: string[]; everywhereElse: boolean }[];
+};
+
+export type CheckoutContent = {
+  form: {
+    title: string;
+    intro?: string;
+    quantityLabel: string;
+    nameLabel: string;
+    emailLabel: string;
+    phoneLabel: string;
+    addressLabel: string;
+    cityLabel: string;
+    stateLabel: string;
+    subtotalLabel: string;
+    deliveryLabel: string;
+    totalLabel: string;
+    agreement: string;
+    payLabel: string;
+    soldOut: string;
+    closed: string;
+  };
+  complete: {
+    paidTitle: string;
+    paidText: string;
+    failedTitle: string;
+    failedText: string;
+    pendingTitle: string;
+    pendingText: string;
+    retryLabel: string;
+  };
+};
+
+export type Policy = { slug: string; title: string; summary: string; body: ArticleBlock[] };
+
 /** Everything the site shows, read from Payload in one go. */
 export type Content = {
   site: SiteConfig;
@@ -196,4 +236,7 @@ export type Content = {
   contact: ContactContent;
   products: Product[];
   articles: Article[];
+  shop: ShopContent;
+  checkout: CheckoutContent;
+  policies: Policy[];
 };

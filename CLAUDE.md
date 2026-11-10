@@ -11,17 +11,28 @@ here. This site has no dark mode, no backend and no dashboard.
 
 ## Decisions already made
 
-- Ordering will happen on this site, through an online store that opens soon. Until then, product
-  pages show "Online store opening soon" (the Store notice in Payload) where the order button
-  will go. Never send visitors to Instagram, WhatsApp or direct messages to order; how ordering will
-  work is explained at `/ordering` (the menu's Orders and Enquiries).
+- Ordering happens on this site. Only the Pocket Power box can be bought online (`purchasable` on the
+  product, with a `price` in naira and a row in Stock); squares stay "Sold as part of the Pocket Power
+  box" and the fila is not sold. While Shop settings → status is Closed, product pages show the Store
+  notice; Open swaps it for a pine Buy button to `/checkout`. Signed-in admins can use `/checkout`
+  while it is closed, to test. Never send visitors to Instagram, WhatsApp or direct messages to
+  order; `/ordering` (the menu's Orders and Enquiries) explains it.
+- The store is a small custom checkout, not Payload's beta store plugin (`src/store/`): `/checkout`
+  posts to `POST /api/checkout`, which re-prices everything on the server, records an order awaiting
+  payment and returns Paystack's hosted payment page. Paystack sends buyers to
+  `/checkout/complete?reference=…` and calls `POST /api/paystack/webhook` (HMAC SHA-512 signed); both
+  run `finalizeOrder`, which verifies with Paystack and claims the order with one conditional D1
+  UPDATE, so stock falls and emails go out exactly once. Delivery fees come from Shop settings' zones
+  (Abuja, then everywhere else). Emails go through Cloudflare Email Sending (`EMAIL` binding) from
+  orders@byjoshuablack.com; a failed email never blocks an order.
+- Policies (delivery, returns, terms, privacy) live in Payload at `/policies/[slug]` and get a footer
+  column once published; Paystack reviews them before activating payments. The brand writes them.
 - Contact is an Instagram direct message: `/contact` (the footer's Contact) is one line and a pine
   Send a DM button to `instagramDm` (`ig.me/m/byjoshuablack`, `src/lib/social.ts`), which opens the
   chat straight away. Instagram cannot pre-write the message. Under it, an outline Send Email button
   opens `mailto:` `site.contact.email` (hi@byjoshuablack.com), with a hint whose address copies itself
   when tapped (`CopyText`). Its copy never mentions ordering.
-- Prices hidden. `showPrices` in Payload's Site settings turns them on (products carry no prices until the
-  store plugin adds them in Phase 4).
+- Prices show once the shop is Open (or earlier with `showPrices` in Site settings).
 - Catalogue is Pocket Power (the box and its ten squares), listed at `/collection`, which opens
   straight on the grid (its Online Store title is for screen readers only). Every Shop Now (header, dock, menu) goes there; Buy Pocket Power goes to the box's
   own page. The box's page has no "Inside the box" section; a square's page keeps "More from Pocket
