@@ -308,7 +308,7 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
               {policies.map((policy, index) => (
                 <span key={policy.href}>
                   {index > 0 && (index === policies.length - 1 ? " and " : ", ")}
-                  <Link href={policy.href} target="_blank" className="link-line-in">
+                  <Link href={policy.href} target="_blank" className="link-line-in text-pine">
                     {policy.label.toLowerCase()}
                   </Link>
                 </span>
