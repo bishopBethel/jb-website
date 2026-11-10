@@ -37,8 +37,10 @@ here. This site has no dark mode, no backend and no dashboard.
   so prices read "₦300,000 · Delivery included" and checkout, the confirmation and emails say
   "Included" instead of ₦0. Emails go through Cloudflare Email Sending (`EMAIL` binding) from
   orders@byjoshuablack.com; a failed email never blocks an order.
-- Policies (delivery, returns, terms, privacy) live in Payload at `/policies/[slug]` and get a footer
-  column once published; Paystack reviews them before activating payments. The brand writes them.
+- Policies live in Payload at `/policies/[slug]`. One page, Policies (`/policies/store`), covers
+  ordering, payment, delivery, cancellations, returns and privacy; it is linked from the footer's
+  Company column after Contact (in Navigation) and from "policies" in the checkout's agreement.
+  The starting text came from us at the brand's request; the brand edits it. Paystack reviews it.
 - Contact is an Instagram direct message: `/contact` (the footer's Contact) is one line and a pine
   Send a DM button to `instagramDm` (`ig.me/m/byjoshuablack`, `src/lib/social.ts`), which opens the
   chat straight away. Instagram cannot pre-write the message. Under it, an outline Send Email button

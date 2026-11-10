@@ -34,13 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const content = await getContent();
   const { site } = content;
   const { menuLinks, shopLink, suggestions } = content.navigation;
-  // Published policies get their own footer column, which Paystack expects to find.
-  const footerColumns = content.policies.length
-    ? [
-        ...content.navigation.footerColumns,
-        { title: "Policies", links: content.policies.map((policy) => ({ label: policy.title, href: `/policies/${policy.slug}` })) },
-      ]
-    : content.navigation.footerColumns;
+  const { footerColumns } = content.navigation;
   return (
     <html
       lang="en"

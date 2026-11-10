@@ -152,8 +152,8 @@ Only the Pocket Power box is sold online. Everything is managed under **Shop** i
 **Before opening**
 1. Open a Paystack business account and save its secret key as the Worker secret
    `PAYSTACK_SECRET_KEY` (type Secret). Start with the test key (`sk_test_…`).
-2. Write the policies under **Shop → Policies**: delivery, returns and refunds, terms of sale and
-   privacy. Paystack reviews them before it activates payments.
+2. Review the starting policy under **Shop → Policies** (at `/policies/store`), especially the
+   dispatch, delivery and returns times. Paystack reviews it before it activates payments.
 3. In Cloudflare, onboard byjoshuablack.com under **Email Service → Email Sending**, so order
    emails can be sent from orders@byjoshuablack.com.
 4. Pocket Power starts at **₦300,000, delivery included** (both delivery zones at ₦0, so pages
