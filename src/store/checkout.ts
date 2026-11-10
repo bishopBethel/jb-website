@@ -5,8 +5,7 @@ import { initializePayment, verifyPayment } from "./paystack";
 import { isNigerianState } from "./states";
 
 export type CheckoutInput = {
-  product: string;
-  quantity: number;
+  items: { product: string; quantity: number }[];
   name: string;
   email: string;
   phone: string;
@@ -26,10 +25,10 @@ export class CheckoutError extends Error {
   }
 }
 
+export type QuoteLine = { product: Product; unitPrice: number; quantity: number };
+
 export type Quote = {
-  product: Product;
-  unitPrice: number;
-  quantity: number;
+  lines: QuoteLine[];
   subtotal: number;
   zone: string;
   deliveryFee: number;
@@ -51,38 +50,51 @@ export async function stockOf(payload: BasePayload, productId: number): Promise<
 }
 
 /** Prices an order from the database alone; nothing the browser sends is trusted. */
-export async function quote(payload: BasePayload, shop: ShopSetting, input: Pick<CheckoutInput, "product" | "quantity" | "state">): Promise<Quote> {
-  const { docs } = await payload.find({
-    collection: "products",
-    where: { slug: { equals: input.product }, _status: { equals: "published" } },
-    limit: 1,
-    depth: 0,
-  });
-  const product = docs[0];
-  if (!product?.purchasable || typeof product.price !== "number" || product.price <= 0) {
-    throw new CheckoutError("unavailable", "This product cannot be bought online.");
+export async function quote(payload: BasePayload, shop: ShopSetting, input: Pick<CheckoutInput, "items" | "state">): Promise<Quote> {
+  // The same product twice counts as one line.
+  const wanted = new Map<string, number>();
+  for (const item of input.items) wanted.set(item.product, (wanted.get(item.product) ?? 0) + item.quantity);
+  if (wanted.size === 0) throw new CheckoutError("invalid", "Your cart is empty.", "items");
+
+  const lines: QuoteLine[] = [];
+  for (const [slug, requested] of wanted) {
+    const { docs } = await payload.find({
+      collection: "products",
+      where: { slug: { equals: slug }, _status: { equals: "published" } },
+      limit: 1,
+      depth: 0,
+    });
+    const product = docs[0];
+    if (!product?.purchasable || typeof product.price !== "number" || product.price <= 0) {
+      throw new CheckoutError("unavailable", `${product?.name ?? "This product"} cannot be bought online.`, "items");
+    }
+    const quantity = Math.trunc(requested);
+    if (!Number.isFinite(quantity) || quantity < 1 || quantity > shop.maxPerOrder) {
+      throw new CheckoutError("quantity", `Choose between 1 and ${shop.maxPerOrder} of ${product.name}.`, "items");
+    }
+    if ((await stockOf(payload, product.id)) < quantity) {
+      throw new CheckoutError("sold-out", `There are not enough of ${product.name} in stock.`, "items");
+    }
+    lines.push({ product, unitPrice: product.price, quantity });
   }
-  const quantity = Math.trunc(Number(input.quantity));
-  if (!Number.isFinite(quantity) || quantity < 1 || quantity > shop.maxPerOrder) {
-    throw new CheckoutError("quantity", `Choose between 1 and ${shop.maxPerOrder}.`, "quantity");
-  }
-  if ((await stockOf(payload, product.id)) < quantity) {
-    throw new CheckoutError("sold-out", "There are not enough in stock.", "quantity");
-  }
+
   if (!isNigerianState(input.state)) throw new CheckoutError("invalid", "Choose your state.", "state");
   const zone = zoneFor(shop, input.state);
   if (!zone) throw new CheckoutError("unavailable", "We cannot deliver there yet.", "state");
 
-  const subtotal = product.price * quantity;
-  return { product, unitPrice: product.price, quantity, subtotal, zone: zone.name, deliveryFee: zone.fee, total: subtotal + zone.fee };
+  const subtotal = lines.reduce((total, line) => total + line.unitPrice * line.quantity, 0);
+  return { lines, subtotal, zone: zone.name, deliveryFee: zone.fee, total: subtotal + zone.fee };
 }
 
 const clean = (value: unknown, max: number) => (typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, max) : "");
 
 export function validate(raw: Record<string, unknown>): CheckoutInput {
+  const items = Array.isArray(raw.items) ? (raw.items as unknown[]).slice(0, 10) : [];
   const input: CheckoutInput = {
-    product: clean(raw.product, 80),
-    quantity: Number(raw.quantity),
+    items: items.map((item) => {
+      const line = (item ?? {}) as Record<string, unknown>;
+      return { product: clean(line.product, 80), quantity: Number(line.quantity) };
+    }),
     name: clean(raw.name, 100),
     email: clean(raw.email, 200).toLowerCase(),
     phone: clean(raw.phone, 30),
@@ -117,7 +129,12 @@ export async function startCheckout(payload: BasePayload, input: CheckoutInput, 
       reference,
       status: "awaiting",
       fulfilment: "to-send",
-      items: [{ product: priced.product.id, name: priced.product.name, unitPrice: priced.unitPrice, quantity: priced.quantity }],
+      items: priced.lines.map((line) => ({
+        product: line.product.id,
+        name: line.product.name,
+        unitPrice: line.unitPrice,
+        quantity: line.quantity,
+      })),
       subtotal: priced.subtotal,
       deliveryFee: priced.deliveryFee,
       total: priced.total,
@@ -135,7 +152,7 @@ export async function startCheckout(payload: BasePayload, input: CheckoutInput, 
     amount: priced.total * 100,
     reference,
     callbackUrl: `${origin}/checkout/complete?reference=${encodeURIComponent(reference)}`,
-    metadata: { orderId: order.id, product: priced.product.slug, quantity: priced.quantity },
+    metadata: { orderId: order.id, items: priced.lines.map((line) => ({ product: line.product.slug, quantity: line.quantity })) },
   });
   return { reference, authorizationUrl };
 }

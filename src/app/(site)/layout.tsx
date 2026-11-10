@@ -60,6 +60,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           searchIndex={searchIndex(content)}
           suggestions={suggestions}
           shop={shopLink}
+          cartLabel={content.checkout.cart.title}
         />
         <main id="main" className="page-width flex-1">
           {children}

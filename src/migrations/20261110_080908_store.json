@@ -13478,22 +13478,85 @@
           "notNull": true,
           "autoincrement": false
         },
-        "form_title": {
-          "name": "form_title",
+        "cart_add_to_cart": {
+          "name": "cart_add_to_cart",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "form_intro": {
-          "name": "form_intro",
+        "cart_view_cart": {
+          "name": "cart_view_cart",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "form_quantity_label": {
-          "name": "form_quantity_label",
+        "cart_title": {
+          "name": "cart_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_intro": {
+          "name": "cart_intro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_empty": {
+          "name": "cart_empty",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_continue_shopping": {
+          "name": "cart_continue_shopping",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_remove": {
+          "name": "cart_remove",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_quantity_label": {
+          "name": "cart_quantity_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_details_title": {
+          "name": "cart_details_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_proceed": {
+          "name": "cart_proceed",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_sold_out": {
+          "name": "cart_sold_out",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_closed": {
+          "name": "cart_closed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13564,27 +13627,6 @@
         },
         "form_agreement": {
           "name": "form_agreement",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "form_pay_label": {
-          "name": "form_pay_label",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "form_sold_out": {
-          "name": "form_sold_out",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "form_closed": {
-          "name": "form_closed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13707,22 +13749,85 @@
           "notNull": true,
           "autoincrement": false
         },
-        "version_form_title": {
-          "name": "version_form_title",
+        "version_cart_add_to_cart": {
+          "name": "version_cart_add_to_cart",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "version_form_intro": {
-          "name": "version_form_intro",
+        "version_cart_view_cart": {
+          "name": "version_cart_view_cart",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "version_form_quantity_label": {
-          "name": "version_form_quantity_label",
+        "version_cart_title": {
+          "name": "version_cart_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_intro": {
+          "name": "version_cart_intro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_empty": {
+          "name": "version_cart_empty",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_continue_shopping": {
+          "name": "version_cart_continue_shopping",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_remove": {
+          "name": "version_cart_remove",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_quantity_label": {
+          "name": "version_cart_quantity_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_details_title": {
+          "name": "version_cart_details_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_proceed": {
+          "name": "version_cart_proceed",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_sold_out": {
+          "name": "version_cart_sold_out",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_closed": {
+          "name": "version_cart_closed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13793,27 +13898,6 @@
         },
         "version_form_agreement": {
           "name": "version_form_agreement",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "version_form_pay_label": {
-          "name": "version_form_pay_label",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "version_form_sold_out": {
-          "name": "version_form_sold_out",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "version_form_closed": {
-          "name": "version_form_closed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13980,6 +14064,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "71d13bb1-ab6e-400f-bccd-453ae3805719",
+  "id": "fffe73e0-5cc1-48c0-a3d1-bb3aed9516b7",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

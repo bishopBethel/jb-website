@@ -390,13 +390,44 @@ const Checkout = page(
   "checkout",
   "Checkout",
   [
-    group("form", "Checkout page", [
-      { name: "title", type: "text", required: true },
+    group("cart", "Cart", [
+      {
+        type: "row",
+        fields: [
+          { name: "addToCart", label: "Add to cart button", type: "text", required: true },
+          { name: "viewCart", label: "View cart link", type: "text", required: true },
+          { name: "title", label: "Cart page title", type: "text", required: true },
+        ],
+      },
       { name: "intro", type: "textarea" },
       {
         type: "row",
         fields: [
+          { name: "empty", label: "When the cart is empty", type: "text", required: true },
+          { name: "continueShopping", type: "text", required: true },
+          { name: "remove", label: "Remove link", type: "text", required: true },
+        ],
+      },
+      {
+        type: "row",
+        fields: [
           { name: "quantityLabel", type: "text", required: true },
+          { name: "detailsTitle", label: "Delivery details title", type: "text", required: true },
+          { name: "proceed", label: "Proceed to checkout button", type: "text", required: true },
+        ],
+      },
+      {
+        type: "row",
+        fields: [
+          { name: "soldOut", label: "When sold out", type: "text", required: true },
+          { name: "closed", label: "When the shop is closed", type: "text", required: true },
+        ],
+      },
+    ]),
+    group("form", "Delivery details", [
+      {
+        type: "row",
+        fields: [
           { name: "nameLabel", type: "text", required: true },
           { name: "emailLabel", type: "text", required: true },
         ],
@@ -419,9 +450,6 @@ const Checkout = page(
         ],
       },
       { name: "agreement", type: "text", required: true, admin: { description: "Shown beside the box buyers tick; the policies are linked after it." } },
-      { name: "payLabel", label: "Pay button", type: "text", required: true },
-      { name: "soldOut", label: "When sold out", type: "text", required: true },
-      { name: "closed", label: "When the shop is closed", type: "text", required: true },
     ]),
     group("complete", "After payment", [
       { name: "paidTitle", type: "text", required: true },

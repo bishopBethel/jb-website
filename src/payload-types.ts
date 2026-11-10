@@ -1833,10 +1833,21 @@ export interface ShopSetting {
  */
 export interface Checkout {
   id: number;
-  form: {
+  cart: {
+    addToCart: string;
+    viewCart: string;
     title: string;
     intro?: string | null;
+    empty: string;
+    continueShopping: string;
+    remove: string;
     quantityLabel: string;
+    detailsTitle: string;
+    proceed: string;
+    soldOut: string;
+    closed: string;
+  };
+  form: {
     nameLabel: string;
     emailLabel: string;
     phoneLabel: string;
@@ -1850,9 +1861,6 @@ export interface Checkout {
      * Shown beside the box buyers tick; the policies are linked after it.
      */
     agreement: string;
-    payLabel: string;
-    soldOut: string;
-    closed: string;
   };
   complete: {
     paidTitle: string;
@@ -2435,12 +2443,25 @@ export interface ShopSettingsSelect<T extends boolean = true> {
  * via the `definition` "checkout_select".
  */
 export interface CheckoutSelect<T extends boolean = true> {
+  cart?:
+    | T
+    | {
+        addToCart?: T;
+        viewCart?: T;
+        title?: T;
+        intro?: T;
+        empty?: T;
+        continueShopping?: T;
+        remove?: T;
+        quantityLabel?: T;
+        detailsTitle?: T;
+        proceed?: T;
+        soldOut?: T;
+        closed?: T;
+      };
   form?:
     | T
     | {
-        title?: T;
-        intro?: T;
-        quantityLabel?: T;
         nameLabel?: T;
         emailLabel?: T;
         phoneLabel?: T;
@@ -2451,9 +2472,6 @@ export interface CheckoutSelect<T extends boolean = true> {
         deliveryLabel?: T;
         totalLabel?: T;
         agreement?: T;
-        payLabel?: T;
-        soldOut?: T;
-        closed?: T;
       };
   complete?:
     | T

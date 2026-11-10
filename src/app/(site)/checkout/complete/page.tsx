@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import config from "@payload-config";
 import { getPayload } from "payload";
+import { ClearCart } from "@/components/store/ClearCart";
 import { Button } from "@/components/ui/Button";
 import { getContent } from "@/content";
 import { formatPrice } from "@/lib/format";
@@ -29,13 +30,12 @@ export default async function CheckoutCompletePage(props: PageProps<"/checkout/c
   const pending = outcome.status === "pending";
   const title = paid ? checkout.complete.paidTitle : pending ? checkout.complete.pendingTitle : checkout.complete.failedTitle;
   const text = paid ? checkout.complete.paidText : pending ? checkout.complete.pendingText : checkout.complete.failedText;
-  const productSlug =
-    order && typeof order.items[0]?.product === "object" ? order.items[0].product.slug : undefined;
 
   return (
     <section className="gutter mx-auto max-w-2xl py-16 text-center lg:py-28">
       <h1 className="heading-lg">{title}</h1>
       <p className="copy-lg mt-5">{text}</p>
+      {paid && <ClearCart />}
       {paid && (
         <dl className="mx-auto mt-10 max-w-sm border-y border-rule py-5 text-left text-body">
           <div className="flex justify-between py-1">
@@ -62,7 +62,7 @@ export default async function CheckoutCompletePage(props: PageProps<"/checkout/c
       )}
       {!paid && !pending && (
         <div className="mx-auto mt-10 max-w-sm">
-          <Button href={productSlug ? `/checkout?product=${productSlug}` : "/checkout"} variant="pine">
+          <Button href="/cart" variant="pine">
             {checkout.complete.retryLabel}
           </Button>
         </div>

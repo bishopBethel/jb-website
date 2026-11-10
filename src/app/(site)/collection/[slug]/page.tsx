@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductGallery, ProductThumbs } from "@/components/product/ProductGallery";
 import { StoreNotice } from "@/components/product/StoreNotice";
-import { Button } from "@/components/ui/Button";
+import { AddToCart } from "@/components/store/AddToCart";
 import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { Frame } from "@/components/ui/Frame";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -66,7 +66,7 @@ function related(product: Product, box: Product, squares: Product[]): Product[] 
 export default async function ProductPage(props: PageProps<"/collection/[slug]">) {
   const { slug } = await props.params;
   const content = await getContent();
-  const { collection, shop, site, store, traditional } = content;
+  const { checkout, collection, shop, site, store, traditional } = content;
   const product = getProduct(content, slug);
   if (!product) notFound();
   const box = getBox(content);
@@ -106,9 +106,12 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
 
             <div className="mt-8 max-w-sm">
               {shop.open && product.purchasable ? (
-                <Button href={`/checkout?product=${product.slug}`} variant="pine">
-                  Buy {product.name}
-                </Button>
+                <AddToCart
+                  slug={product.slug}
+                  label={checkout.cart.addToCart}
+                  viewCartLabel={checkout.cart.viewCart}
+                  max={shop.maxPerOrder}
+                />
               ) : (
                 <StoreNotice status={store.status} note={store.note} />
               )}

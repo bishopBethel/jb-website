@@ -24,10 +24,21 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
     slug: "checkout",
     data: {
       _status: "published",
-      form: {
-        title: "Checkout",
+      cart: {
+        addToCart: "Add to Cart",
+        viewCart: "View cart",
+        title: "Your cart",
         intro: "Pocket Power, delivered to your door.",
+        empty: "Your cart is empty.",
+        continueShopping: "Continue shopping",
+        remove: "Remove",
         quantityLabel: "Quantity",
+        detailsTitle: "Delivery details",
+        proceed: "Proceed to Checkout",
+        soldOut: "Pocket Power is sold out for now.",
+        closed: "Our online store opens soon.",
+      },
+      form: {
         nameLabel: "Full name",
         emailLabel: "Email",
         phoneLabel: "Phone number",
@@ -38,9 +49,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
         deliveryLabel: "Delivery",
         totalLabel: "Total",
         agreement: "I have read and agree to the",
-        payLabel: "Pay with Paystack",
-        soldOut: "Pocket Power is sold out for now.",
-        closed: "Our online store opens soon.",
       },
       complete: {
         paidTitle: "Thank you",

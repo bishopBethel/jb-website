@@ -189,10 +189,21 @@ export type ShopContent = {
 };
 
 export type CheckoutContent = {
-  form: {
+  cart: {
+    addToCart: string;
+    viewCart: string;
     title: string;
     intro?: string;
+    empty: string;
+    continueShopping: string;
+    remove: string;
     quantityLabel: string;
+    detailsTitle: string;
+    proceed: string;
+    soldOut: string;
+    closed: string;
+  };
+  form: {
     nameLabel: string;
     emailLabel: string;
     phoneLabel: string;
@@ -203,9 +214,6 @@ export type CheckoutContent = {
     deliveryLabel: string;
     totalLabel: string;
     agreement: string;
-    payLabel: string;
-    soldOut: string;
-    closed: string;
   };
   complete: {
     paidTitle: string;
