@@ -163,7 +163,7 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, cartLabel }
 
           <div className="col-start-3 hidden items-center justify-end gap-7 lg:flex lg:h-9">
             {inCart > 0 && (
-              <Link href="/cart" className="flex items-center gap-2 text-body">
+              <Link href="/checkout" className="flex items-center gap-2 text-body">
                 <Icon name="bag" />
                 {cartLabel} ({inCart})
               </Link>
@@ -202,9 +202,9 @@ export function SiteNav({ menuLinks, searchIndex, suggestions, shop, cartLabel }
         </div>
         {inCart > 0 && (
           <Link
-            href="/cart"
+            href="/checkout"
             aria-label={`${cartLabel}, ${inCart}`}
-            aria-current={pathname === "/cart" ? "page" : undefined}
+            aria-current={pathname === "/checkout" ? "page" : undefined}
             className="glass relative grid size-14 shrink-0 place-items-center rounded-full"
           >
             <Icon name="bag" />

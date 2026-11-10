@@ -274,7 +274,7 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
           </p>
         )}
         <button type="submit" disabled={sending} className={buttonClasses("pine", "default", "mt-6 disabled:opacity-60")}>
-          {sending ? "…" : copy.cart.proceed}
+          {sending ? "…" : `${copy.cart.payLabel} · ${naira(total)}`}
         </button>
       </div>
     </form>

@@ -14,16 +14,16 @@ here. This site has no dark mode, no backend and no dashboard.
 - Ordering happens on this site. Only the Pocket Power box can be bought online (`purchasable` on the
   product, with a `price` in naira and a row in Stock); squares stay "Sold as part of the Pocket Power
   box" and the fila is not sold. While Shop settings → status is Closed, the store and the box's page
-  show the Store notice; Open swaps it for a pine Add to Cart button (`AddToCart`), with a View cart
-  link once the box is in the cart. Signed-in admins can use `/cart` while the shop is closed, to
-  test. Never send visitors to Instagram, WhatsApp or direct messages to order; `/ordering` (the
+  show the Store notice; Open swaps it for `BuyNow`: a pill quantity stepper (−, number, +) beside a
+  larger pine Proceed to Checkout pill, which puts that quantity in the cart and opens `/checkout`.
+  Signed-in admins can use `/checkout` while the shop is closed, to test. Never send visitors to Instagram, WhatsApp or direct messages to order; `/ordering` (the
   menu's Orders and Enquiries) explains it.
 - The cart lives in the browser (`src/lib/cart.ts`, localStorage `jb-cart`). Once it holds
-  something, a cart circle with its count joins the dock (before Search) and a cart link the
-  header. Checkout happens on `/cart` itself: items with quantity steppers, delivery details, the
-  total and Proceed to Checkout, which goes straight to Paystack's payment page. `/checkout`
-  redirects to `/cart`; a paid order empties the cart.
-- The store is a small custom checkout, not Payload's beta store plugin (`src/store/`): `/cart`
+  something, a bag circle with its count joins the dock (before Search) and a Checkout link the
+  header, both to `/checkout`. `/checkout` holds the items with quantity steppers, delivery details,
+  the total and Pay now, which goes straight to Paystack's payment page. `/cart` redirects there; a
+  paid order empties the cart.
+- The store is a small custom checkout, not Payload's beta store plugin (`src/store/`): `/checkout`
   posts the cart's items to `POST /api/checkout`, which re-prices everything on the server, records
   an order awaiting payment and returns Paystack's hosted payment page. Paystack sends buyers to
   `/checkout/complete?reference=…` and calls `POST /api/paystack/webhook` (HMAC SHA-512 signed); both
@@ -40,8 +40,8 @@ here. This site has no dark mode, no backend and no dashboard.
   when tapped (`CopyText`). Its copy never mentions ordering.
 - Prices show once the shop is Open (or earlier with `showPrices` in Site settings).
 - The store at `/collection` shows the Pocket Power box alone, as the brand asked: its card (photo,
-  name, price) leads to the box's page, and Add to Cart sits under it. No grid, filters or tile
-  sizes. Every Shop Now (header, dock, menu) goes there; the home page's Buy Pocket Power goes to the
+  name, price) leads to the box's page, with the tiles' hover (pointer cursor, soft shade and the
+  tile hint following the mouse), and `BuyNow` sits under it. No grid, filters or tile sizes. Every Shop Now (header, dock, menu) goes there; the home page's Buy Pocket Power goes to the
   box's page. The ten squares keep their own pages (from search, articles and the box's family), and
   a square's page keeps "More from Pocket Power". The fila, a branded Yoruba cap, keeps its page at
   `/traditional`, reached from a picture link on the Pocket Power page (`traditional.card`).

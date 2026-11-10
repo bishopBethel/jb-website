@@ -1,6 +1,6 @@
 import { ProductCard } from "@/components/product/ProductCard";
 import { StoreNotice } from "@/components/product/StoreNotice";
-import { AddToCart } from "@/components/store/AddToCart";
+import { BuyNow } from "@/components/store/BuyNow";
 import { getBox, getContent, picture } from "@/content";
 import { formatPrice } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
@@ -14,7 +14,7 @@ export async function generateMetadata() {
 // Only the Pocket Power box is sold, so the store shows it alone; the squares keep their own pages.
 export default async function CollectionPage() {
   const content = await getContent();
-  const { collection, checkout, shop, store } = content;
+  const { collection, checkout, shop, store, tileHint } = content;
   const box = getBox(content);
 
   return (
@@ -33,10 +33,17 @@ export default async function CollectionPage() {
           }}
           sizes={sizes.half}
           eager
+          hint={tileHint}
         />
         <div className="mx-auto mt-2 max-w-sm">
           {shop.open && box.purchasable ? (
-            <AddToCart slug={box.slug} label={checkout.cart.addToCart} viewCartLabel={checkout.cart.viewCart} max={shop.maxPerOrder} />
+            <BuyNow
+              slug={box.slug}
+              name={box.name}
+              label={checkout.cart.proceed}
+              quantityLabel={checkout.cart.quantityLabel}
+              max={shop.maxPerOrder}
+            />
           ) : (
             <StoreNotice status={store.status} note={store.note} />
           )}

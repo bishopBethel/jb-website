@@ -62,7 +62,7 @@ export default async function CheckoutCompletePage(props: PageProps<"/checkout/c
       )}
       {!paid && !pending && (
         <div className="mx-auto mt-10 max-w-sm">
-          <Button href="/cart" variant="pine">
+          <Button href="/checkout" variant="pine">
             {checkout.complete.retryLabel}
           </Button>
         </div>

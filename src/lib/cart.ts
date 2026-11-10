@@ -62,18 +62,13 @@ export function cartCount(lines: CartLine[]): number {
   return lines.reduce((total, line) => total + line.quantity, 0);
 }
 
-export function addToCart(slug: string, max: number) {
-  const lines = read();
-  const existing = lines.find((line) => line.slug === slug);
-  write(
-    existing
-      ? lines.map((line) => (line.slug === slug ? { slug, quantity: Math.min(line.quantity + 1, max) } : line))
-      : [...lines, { slug, quantity: 1 }],
-  );
-}
-
+/** Sets how many of a product the cart holds, adding it if needed; zero removes it. */
 export function setQuantity(slug: string, quantity: number) {
-  write(read().map((line) => (line.slug === slug ? { slug, quantity } : line)).filter((line) => line.quantity > 0));
+  const lines = read();
+  const next = lines.some((line) => line.slug === slug)
+    ? lines.map((line) => (line.slug === slug ? { slug, quantity } : line))
+    : [...lines, { slug, quantity }];
+  write(next.filter((line) => line.quantity > 0));
 }
 
 export function removeFromCart(slug: string) {

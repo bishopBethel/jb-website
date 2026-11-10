@@ -159,8 +159,8 @@ Only the Pocket Power box is sold online. Everything is managed under **Shop** i
 4. On the Pocket Power product, set the **price** and tick **Can be bought online**; set the
    quantity under **Shop → Stock**; set the two delivery fees and the alert address under
    **Shop → Shop settings**.
-5. Test: signed in to the admin, open `/cart`, add the box from its page if needed, and pay with a
-   Paystack test card.
+5. Test: signed in to the admin, choose a quantity on the store page, Proceed to Checkout, and pay
+   with a Paystack test card.
 6. When Paystack approves the account, replace the secret with the live key, add the webhook URL
    `https://byjoshuablack.com/api/paystack/webhook` in Paystack's settings, place one real order,
    then set **Shop settings → status** to Open.

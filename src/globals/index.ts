@@ -390,13 +390,13 @@ const Checkout = page(
   "checkout",
   "Checkout",
   [
-    group("cart", "Cart", [
+    group("cart", "Buying", [
       {
         type: "row",
         fields: [
-          { name: "addToCart", label: "Add to cart button", type: "text", required: true },
-          { name: "viewCart", label: "View cart link", type: "text", required: true },
-          { name: "title", label: "Cart page title", type: "text", required: true },
+          { name: "proceed", label: "Button beside the quantity", type: "text", required: true },
+          { name: "title", label: "Checkout page title", type: "text", required: true },
+          { name: "payLabel", label: "Pay button", type: "text", required: true },
         ],
       },
       { name: "intro", type: "textarea" },
@@ -413,7 +413,6 @@ const Checkout = page(
         fields: [
           { name: "quantityLabel", type: "text", required: true },
           { name: "detailsTitle", label: "Delivery details title", type: "text", required: true },
-          { name: "proceed", label: "Proceed to checkout button", type: "text", required: true },
         ],
       },
       {

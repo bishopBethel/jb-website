@@ -13478,15 +13478,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "cart_add_to_cart": {
-          "name": "cart_add_to_cart",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "cart_view_cart": {
-          "name": "cart_view_cart",
+        "cart_proceed": {
+          "name": "cart_proceed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13494,6 +13487,13 @@
         },
         "cart_title": {
           "name": "cart_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cart_pay_label": {
+          "name": "cart_pay_label",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13536,13 +13536,6 @@
         },
         "cart_details_title": {
           "name": "cart_details_title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "cart_proceed": {
-          "name": "cart_proceed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13749,15 +13742,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "version_cart_add_to_cart": {
-          "name": "version_cart_add_to_cart",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "version_cart_view_cart": {
-          "name": "version_cart_view_cart",
+        "version_cart_proceed": {
+          "name": "version_cart_proceed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13765,6 +13751,13 @@
         },
         "version_cart_title": {
           "name": "version_cart_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_cart_pay_label": {
+          "name": "version_cart_pay_label",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13807,13 +13800,6 @@
         },
         "version_cart_details_title": {
           "name": "version_cart_details_title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "version_cart_proceed": {
-          "name": "version_cart_proceed",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -14064,6 +14050,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "fffe73e0-5cc1-48c0-a3d1-bb3aed9516b7",
+  "id": "1a967c3d-9103-43de-9b50-a7f9e3475110",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

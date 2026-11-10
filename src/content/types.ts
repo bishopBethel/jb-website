@@ -190,16 +190,15 @@ export type ShopContent = {
 
 export type CheckoutContent = {
   cart: {
-    addToCart: string;
-    viewCart: string;
+    proceed: string;
     title: string;
+    payLabel: string;
     intro?: string;
     empty: string;
     continueShopping: string;
     remove: string;
     quantityLabel: string;
     detailsTitle: string;
-    proceed: string;
     soldOut: string;
     closed: string;
   };

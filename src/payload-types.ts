@@ -1834,16 +1834,15 @@ export interface ShopSetting {
 export interface Checkout {
   id: number;
   cart: {
-    addToCart: string;
-    viewCart: string;
+    proceed: string;
     title: string;
+    payLabel: string;
     intro?: string | null;
     empty: string;
     continueShopping: string;
     remove: string;
     quantityLabel: string;
     detailsTitle: string;
-    proceed: string;
     soldOut: string;
     closed: string;
   };
@@ -2446,16 +2445,15 @@ export interface CheckoutSelect<T extends boolean = true> {
   cart?:
     | T
     | {
-        addToCart?: T;
-        viewCart?: T;
+        proceed?: T;
         title?: T;
+        payLabel?: T;
         intro?: T;
         empty?: T;
         continueShopping?: T;
         remove?: T;
         quantityLabel?: T;
         detailsTitle?: T;
-        proceed?: T;
         soldOut?: T;
         closed?: T;
       };

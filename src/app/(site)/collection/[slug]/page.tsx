@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductGallery, ProductThumbs } from "@/components/product/ProductGallery";
 import { StoreNotice } from "@/components/product/StoreNotice";
-import { AddToCart } from "@/components/store/AddToCart";
+import { BuyNow } from "@/components/store/BuyNow";
 import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { Frame } from "@/components/ui/Frame";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -106,10 +106,11 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
 
             <div className="mt-8 max-w-sm">
               {shop.open && product.purchasable ? (
-                <AddToCart
+                <BuyNow
                   slug={product.slug}
-                  label={checkout.cart.addToCart}
-                  viewCartLabel={checkout.cart.viewCart}
+                  name={product.name}
+                  label={checkout.cart.proceed}
+                  quantityLabel={checkout.cart.quantityLabel}
                   max={shop.maxPerOrder}
                 />
               ) : (
