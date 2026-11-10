@@ -41,7 +41,7 @@ before each deploy.
 Pushes to `main` deploy through Workers Builds (build command `npm run typecheck && npm run lint`,
 deploy command `npm run deploy`, which migrates, snapshots, builds and deploys). Build variables:
 `NEXT_PUBLIC_SITE_URL` and `REVALIDATE_SECRET`. Worker secrets (type Secret): `PAYLOAD_SECRET`,
-`REVALIDATE_SECRET` (the same value), `CACHE_PURGE_API_TOKEN`; Worker variable: `CACHE_PURGE_ZONE_ID`.
+`REVALIDATE_SECRET` (the same value), `CACHE_PURGE_API_TOKEN` (Zone → Cache Purge on byjoshuablack.com).
 Generate secrets with `openssl rand -hex 32`.
 
 For local work, copy `.env.example` to `.env` and to `.dev.vars` and fill in `PAYLOAD_SECRET`.

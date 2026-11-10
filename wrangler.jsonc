@@ -50,9 +50,11 @@
   "observability": {
     "enabled": true
   },
-  // Where photos uploaded through Payload are served from. Local runs leave it empty in .dev.vars.
+  // Where photos uploaded through Payload are served from (local runs leave it empty in .dev.vars),
+  // and the zone whose cache is purged when content is published.
   "vars": {
-    "MEDIA_ORIGIN": "https://media.byjoshuablack.com"
+    "MEDIA_ORIGIN": "https://media.byjoshuablack.com",
+    "CACHE_PURGE_ZONE_ID": "737f2e62e0010acf6e68453f3ca9ead6"
   },
   // Deploys keep variables set in the Cloudflare dashboard instead of deleting them.
   "keep_vars": true,
