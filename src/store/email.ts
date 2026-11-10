@@ -17,10 +17,10 @@ async function emailBinding(): Promise<SendEmail | undefined> {
   return (env as { EMAIL?: SendEmail }).EMAIL;
 }
 
-function summary(order: Order): { lines: string[]; rows: string } {
+function summary(order: Order, included: string): { lines: string[]; rows: string } {
   const lines = [
     ...order.items.map((item) => `${item.quantity} × ${item.name} — ${naira(item.unitPrice * item.quantity)}`),
-    `Delivery (${order.zone}) — ${naira(order.deliveryFee)}`,
+    `Delivery (${order.zone}) — ${order.deliveryFee === 0 ? included : naira(order.deliveryFee)}`,
     `Total — ${naira(order.total)}`,
     "",
     `Deliver to: ${order.customerName}, ${order.address}, ${order.city}, ${order.state}`,
@@ -41,7 +41,7 @@ export async function sendOrderEmails(payload: BasePayload, order: Order) {
   ]);
   const from = { email: FROM_ADDRESS, name: settings.name };
   const replyTo = settings.contact?.email ?? undefined;
-  const { lines, rows } = summary(order);
+  const { lines, rows } = summary(order, checkout.form.deliveryIncluded);
   const heading = `Order ${order.reference}`;
 
   await email.send({

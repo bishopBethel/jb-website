@@ -52,7 +52,11 @@ export default async function CheckoutCompletePage(props: PageProps<"/checkout/c
           ))}
           <div className="flex justify-between py-1">
             <dt className="text-mute">{order.zone}</dt>
-            <dd>{formatPrice({ amount: order.deliveryFee, currency: "NGN" })}</dd>
+            <dd>
+              {order.deliveryFee === 0
+                ? checkout.form.deliveryIncluded
+                : formatPrice({ amount: order.deliveryFee, currency: "NGN" })}
+            </dd>
           </div>
           <div className="mt-2 flex justify-between border-t border-rule pt-3 font-bold">
             <dt>Total</dt>

@@ -13541,6 +13541,13 @@
           "notNull": false,
           "autoincrement": false
         },
+        "cart_price_note": {
+          "name": "cart_price_note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "cart_sold_out": {
           "name": "cart_sold_out",
           "type": "text",
@@ -13606,6 +13613,13 @@
         },
         "form_delivery_label": {
           "name": "form_delivery_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "form_delivery_included": {
+          "name": "form_delivery_included",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13805,6 +13819,13 @@
           "notNull": false,
           "autoincrement": false
         },
+        "version_cart_price_note": {
+          "name": "version_cart_price_note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "version_cart_sold_out": {
           "name": "version_cart_sold_out",
           "type": "text",
@@ -13870,6 +13891,13 @@
         },
         "version_form_delivery_label": {
           "name": "version_form_delivery_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_form_delivery_included": {
+          "name": "version_form_delivery_included",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -14050,6 +14078,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "1a967c3d-9103-43de-9b50-a7f9e3475110",
+  "id": "acd54a64-1143-498a-98ea-9ef77c13a82d",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

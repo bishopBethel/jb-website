@@ -1843,6 +1843,10 @@ export interface Checkout {
     remove: string;
     quantityLabel: string;
     detailsTitle: string;
+    /**
+     * Shown while every delivery zone's fee is ₦0.
+     */
+    priceNote: string;
     soldOut: string;
     closed: string;
   };
@@ -1855,6 +1859,7 @@ export interface Checkout {
     stateLabel: string;
     subtotalLabel: string;
     deliveryLabel: string;
+    deliveryIncluded: string;
     totalLabel: string;
     /**
      * Shown beside the box buyers tick; the policies are linked after it.
@@ -2454,6 +2459,7 @@ export interface CheckoutSelect<T extends boolean = true> {
         remove?: T;
         quantityLabel?: T;
         detailsTitle?: T;
+        priceNote?: T;
         soldOut?: T;
         closed?: T;
       };
@@ -2468,6 +2474,7 @@ export interface CheckoutSelect<T extends boolean = true> {
         stateLabel?: T;
         subtotalLabel?: T;
         deliveryLabel?: T;
+        deliveryIncluded?: T;
         totalLabel?: T;
         agreement?: T;
       };

@@ -156,9 +156,10 @@ Only the Pocket Power box is sold online. Everything is managed under **Shop** i
    privacy. Paystack reviews them before it activates payments.
 3. In Cloudflare, onboard byjoshuablack.com under **Email Service → Email Sending**, so order
    emails can be sent from orders@byjoshuablack.com.
-4. On the Pocket Power product, set the **price** and tick **Can be bought online**; set the
-   quantity under **Shop → Stock**; set the two delivery fees and the alert address under
-   **Shop → Shop settings**.
+4. Pocket Power starts at **₦300,000, delivery included** (both delivery zones at ₦0, so pages
+   say "Delivery included"). Tick **Can be bought online** on the product, set the quantity under
+   **Shop → Stock**, and check the alert address under **Shop → Shop settings**. A delivery fee above
+   ₦0 is added at checkout and shown with its zone.
 5. Test: signed in to the admin, choose a quantity on the store page, Proceed to Checkout, and pay
    with a Paystack test card.
 6. When Paystack approves the account, replace the secret with the live key, add the webhook URL

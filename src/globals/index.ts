@@ -413,6 +413,13 @@ const Checkout = page(
         fields: [
           { name: "quantityLabel", type: "text", required: true },
           { name: "detailsTitle", label: "Delivery details title", type: "text", required: true },
+          {
+            name: "priceNote",
+            label: "Beside the price when delivery is free",
+            type: "text",
+            required: true,
+            admin: { description: "Shown while every delivery zone's fee is ₦0." },
+          },
         ],
       },
       {
@@ -445,6 +452,7 @@ const Checkout = page(
         fields: [
           { name: "subtotalLabel", type: "text", required: true },
           { name: "deliveryLabel", type: "text", required: true },
+          { name: "deliveryIncluded", label: "Delivery when its fee is ₦0", type: "text", required: true },
           { name: "totalLabel", type: "text", required: true },
         ],
       },

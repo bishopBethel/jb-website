@@ -199,6 +199,7 @@ export type CheckoutContent = {
     remove: string;
     quantityLabel: string;
     detailsTitle: string;
+    priceNote: string;
     soldOut: string;
     closed: string;
   };
@@ -211,6 +212,7 @@ export type CheckoutContent = {
     stateLabel: string;
     subtotalLabel: string;
     deliveryLabel: string;
+    deliveryIncluded: string;
     totalLabel: string;
     agreement: string;
   };

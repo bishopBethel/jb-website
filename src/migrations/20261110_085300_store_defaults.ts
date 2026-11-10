@@ -1,7 +1,7 @@
 import type { MigrateDownArgs, MigrateUpArgs } from "@payloadcms/db-d1-sqlite";
 
-// Starting values for the shop: closed, two delivery zones with fees still to be set, the
-// checkout's interface copy, and a stock row for the box. The brand edits all of it in the admin.
+// Starting values for the shop: closed, the box at ₦300,000 with delivery included (both zones at
+// ₦0), the checkout's interface copy, and a stock row for the box. The brand edits it all in the admin.
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   const context = { skipRevalidate: true };
 
@@ -34,6 +34,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
         remove: "Remove",
         quantityLabel: "Quantity",
         detailsTitle: "Delivery details",
+        priceNote: "Delivery included",
         soldOut: "Pocket Power is sold out for now.",
         closed: "Our online store opens soon.",
       },
@@ -46,6 +47,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
         stateLabel: "State",
         subtotalLabel: "Subtotal",
         deliveryLabel: "Delivery",
+        deliveryIncluded: "Included",
         totalLabel: "Total",
         agreement: "I have read and agree to the",
       },
@@ -70,6 +72,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
 
   const { docs } = await payload.find({ collection: "products", where: { kind: { equals: "set" } }, limit: 1, depth: 0, req });
   if (docs[0]) {
+    await payload.update({ collection: "products", id: docs[0].id, data: { price: 300000, _status: "published" }, context, req });
     await payload.create({ collection: "stock", data: { product: docs[0].id, quantity: 0 }, context, req });
   }
 }

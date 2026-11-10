@@ -29,7 +29,9 @@ here. This site has no dark mode, no backend and no dashboard.
   `/checkout/complete?reference=…` and calls `POST /api/paystack/webhook` (HMAC SHA-512 signed); both
   run `finalizeOrder`, which verifies with Paystack and claims the order with one conditional D1
   UPDATE, so stock falls and emails go out exactly once. Delivery fees come from Shop settings' zones
-  (Abuja, then everywhere else). Emails go through Cloudflare Email Sending (`EMAIL` binding) from
+  (Abuja, then everywhere else). Pocket Power is ₦300,000 with delivery included: both zones are ₦0,
+  so prices read "₦300,000 · Delivery included" and checkout, the confirmation and emails say
+  "Included" instead of ₦0. Emails go through Cloudflare Email Sending (`EMAIL` binding) from
   orders@byjoshuablack.com; a failed email never blocks an order.
 - Policies (delivery, returns, terms, privacy) live in Payload at `/policies/[slug]` and get a footer
   column once published; Paystack reviews them before activating payments. The brand writes them.

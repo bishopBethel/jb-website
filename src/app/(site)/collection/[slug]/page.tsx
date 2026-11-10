@@ -101,7 +101,14 @@ export default async function ProductPage(props: PageProps<"/collection/[slug]">
               <span className="text-ink">{isPiece ? "Colour" : "Contains"}: </span>
               <span>{isPiece ? product.descriptor : "Ten pocket squares"}</span>
             </p>
-            {product.price && <p className="mt-2 text-label">{formatPrice(product.price)}</p>}
+            {product.price && (
+              <p className="mt-2 text-label">
+                {formatPrice(product.price)}
+                {shop.zones.length > 0 && shop.zones.every((zone) => zone.fee === 0) && (
+                  <span className="text-mute"> · {checkout.cart.priceNote}</span>
+                )}
+              </p>
+            )}
             <p className="copy mt-5 max-w-sm text-mute">{product.summary}</p>
 
             <div className="mt-8 max-w-sm">

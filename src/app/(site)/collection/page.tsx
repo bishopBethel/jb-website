@@ -16,6 +16,7 @@ export default async function CollectionPage() {
   const content = await getContent();
   const { collection, checkout, shop, store, tileHint } = content;
   const box = getBox(content);
+  const deliveryFree = shop.zones.length > 0 && shop.zones.every((zone) => zone.fee === 0);
 
   return (
     <>
@@ -28,7 +29,9 @@ export default async function CollectionPage() {
             kind: box.kind,
             name: box.name,
             descriptor: box.descriptor,
-            price: box.price ? formatPrice(box.price) : undefined,
+            price: box.price
+              ? [formatPrice(box.price), deliveryFree ? checkout.cart.priceNote : ""].filter(Boolean).join(" · ")
+              : undefined,
             picture: picture(box.tile),
           }}
           sizes={sizes.half}

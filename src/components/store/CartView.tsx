@@ -66,6 +66,7 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
   });
   const unavailable = cart.filter((line) => !catalog.some((entry) => entry.slug === line.slug));
   const zone = state ? (zones.find((item) => item.states.includes(state)) ?? zones.find((item) => item.everywhereElse)) : undefined;
+  const deliveryFree = zones.length > 0 && zones.every((item) => item.fee === 0);
   const subtotal = lines.reduce((total, line) => total + line.unitPrice * line.quantity, 0);
   const total = subtotal + (zone?.fee ?? 0);
 
@@ -234,9 +235,9 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
           <div className="flex justify-between py-1">
             <dt className="text-mute">
               {copy.form.deliveryLabel}
-              {zone ? ` · ${zone.name}` : ""}
+              {zone && !deliveryFree ? ` · ${zone.name}` : ""}
             </dt>
-            <dd>{zone ? naira(zone.fee) : "—"}</dd>
+            <dd>{deliveryFree || zone?.fee === 0 ? copy.form.deliveryIncluded : zone ? naira(zone.fee) : "—"}</dd>
           </div>
           <div className="mt-2 flex justify-between border-t border-rule pt-3 font-bold">
             <dt>{copy.form.totalLabel}</dt>
