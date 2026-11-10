@@ -434,8 +434,17 @@ const Checkout = page(
       {
         type: "row",
         fields: [
-          { name: "nameLabel", type: "text", required: true },
+          { name: "firstNameLabel", type: "text", required: true },
+          { name: "lastNameLabel", type: "text", required: true },
           { name: "emailLabel", type: "text", required: true },
+        ],
+      },
+      {
+        type: "row",
+        fields: [
+          { name: "countryCodeLabel", label: "Country code (for screen readers)", type: "text", required: true },
+          { name: "emailInvalid", label: "When the email looks wrong", type: "text", required: true },
+          { name: "phoneInvalid", label: "When the phone number looks wrong", type: "text", required: true },
         ],
       },
       {

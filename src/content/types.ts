@@ -204,7 +204,11 @@ export type CheckoutContent = {
     closed: string;
   };
   form: {
-    nameLabel: string;
+    firstNameLabel: string;
+    lastNameLabel: string;
+    countryCodeLabel: string;
+    emailInvalid: string;
+    phoneInvalid: string;
     emailLabel: string;
     phoneLabel: string;
     addressLabel: string;

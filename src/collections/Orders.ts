@@ -81,9 +81,16 @@ export const Orders: CollectionConfig = {
       {
         type: "row",
         fields: [
-          { name: "customerName", label: "Name", type: "text", required: true },
+          { name: "firstName", type: "text", required: true },
+          { name: "lastName", type: "text", required: true },
+          { name: "customerName", label: "Full name", type: "text", required: true },
+        ],
+      },
+      {
+        type: "row",
+        fields: [
           { name: "email", type: "email", required: true },
-          { name: "phone", type: "text", required: true },
+          { name: "phone", type: "text", required: true, admin: { description: "International form, ready for SMS." } },
         ],
       },
       {

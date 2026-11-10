@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
 import { Button, buttonClasses } from "@/components/ui/Button";
 import { Frame } from "@/components/ui/Frame";
-import { Icon } from "@/components/ui/Icon";
+import { PhoneField } from "@/components/store/PhoneField";
+import { Select } from "@/components/ui/Select";
 import type { CheckoutContent, LinkItem, Picture, ShopContent } from "@/content/types";
 import { removeFromCart, setQuantity, useCart } from "@/lib/cart";
 import { cn } from "@/lib/cn";
+import { defaultDialCountry, isValidEmail, toInternational } from "@/store/phone";
 
 export type CatalogItem = {
   slug: string;
@@ -26,7 +28,7 @@ type Props = {
   policies: LinkItem[];
 };
 
-type Field = "items" | "name" | "email" | "phone" | "address" | "city" | "state" | "agree";
+type Field = "items" | "firstName" | "lastName" | "email" | "phone" | "address" | "city" | "state" | "agree";
 
 const naira = (amount: number) =>
   new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(amount);
@@ -37,15 +39,17 @@ const inputClasses =
 // True once the browser's saved cart can be read, so the page never flashes "empty" first.
 const useHydrated = () => useSyncExternalStore(() => () => {}, () => true, () => false);
 
-function Row({ label, error, children, htmlFor }: { label: string; error?: string; children: ReactNode; htmlFor: string }) {
+type RowProps = { label: string; error?: string; children: ReactNode; htmlFor: string; labelId?: string };
+
+function Row({ label, error, children, htmlFor, labelId }: RowProps) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-2 block text-tiny uppercase text-mute">
+      <label id={labelId} htmlFor={htmlFor} className="mb-2 block text-tiny uppercase text-mute">
         {label}
       </label>
       {children}
       {error && (
-        <p role="alert" className="mt-2 text-label text-ink">
+        <p id={`${htmlFor}-error`} role="alert" className="mt-2 text-label text-ink">
           {error}
         </p>
       )}
@@ -57,6 +61,9 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
   const hydrated = useHydrated();
   const cart = useCart();
   const [state, setState] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneCountry, setPhoneCountry] = useState(defaultDialCountry);
+  const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<Partial<Record<Field | "form", string>>>({});
   const [sending, setSending] = useState(false);
 
@@ -85,9 +92,22 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
     );
   }
 
+  const setError = (field: Field, message?: string) => setErrors((current) => ({ ...current, [field]: message }));
+  const checkEmail = () => setError("email", email.trim() && !isValidEmail(email) ? copy.form.emailInvalid : undefined);
+  const checkPhone = () =>
+    setError("phone", phone.trim() && !toInternational(phoneCountry, phone) ? copy.form.phoneInvalid : undefined);
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    if (!isValidEmail(email) || !toInternational(phoneCountry, phone)) {
+      setErrors({
+        email: isValidEmail(email) ? undefined : copy.form.emailInvalid,
+        phone: toInternational(phoneCountry, phone) ? undefined : copy.form.phoneInvalid,
+      });
+      document.getElementById(isValidEmail(email) ? "phone" : "email")?.focus();
+      return;
+    }
     setSending(true);
     setErrors({});
     try {
@@ -97,9 +117,11 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
         credentials: "same-origin",
         body: JSON.stringify({
           items: lines.map((line) => ({ product: line.slug, quantity: line.quantity })),
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone"),
+          firstName: data.get("firstName"),
+          lastName: data.get("lastName"),
+          email,
+          phoneCountry,
+          phone,
           address: data.get("address"),
           city: data.get("city"),
           state,
@@ -182,17 +204,51 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
 
         <h2 className="heading-sm mt-12">{copy.cart.detailsTitle}</h2>
         <div className="mt-6 space-y-6">
-          <Row label={copy.form.nameLabel} htmlFor="name" error={errors.name}>
-            <input id="name" name="name" autoComplete="name" required className={inputClasses} />
-          </Row>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <Row label={copy.form.emailLabel} htmlFor="email" error={errors.email}>
-              <input id="email" name="email" type="email" autoComplete="email" inputMode="email" required className={inputClasses} />
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <Row label={copy.form.firstNameLabel} htmlFor="firstName" error={errors.firstName}>
+              <input id="firstName" name="firstName" autoComplete="given-name" required className={inputClasses} />
             </Row>
-            <Row label={copy.form.phoneLabel} htmlFor="phone" error={errors.phone}>
-              <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" required className={inputClasses} />
+            <Row label={copy.form.lastNameLabel} htmlFor="lastName" error={errors.lastName}>
+              <input id="lastName" name="lastName" autoComplete="family-name" required className={inputClasses} />
             </Row>
           </div>
+          <Row label={copy.form.emailLabel} htmlFor="email" error={errors.email}>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              inputMode="email"
+              required
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                if (errors.email && isValidEmail(event.target.value)) setError("email");
+              }}
+              onBlur={checkEmail}
+              aria-invalid={Boolean(errors.email) || undefined}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={cn(inputClasses, errors.email && "border-ink")}
+            />
+          </Row>
+          <Row label={copy.form.phoneLabel} htmlFor="phone" error={errors.phone}>
+            <PhoneField
+              id="phone"
+              country={phoneCountry}
+              number={phone}
+              onCountry={(code) => {
+                setPhoneCountry(code);
+                if (errors.phone && toInternational(code, phone)) setError("phone");
+              }}
+              onNumber={(value) => {
+                setPhone(value);
+                if (errors.phone && toInternational(phoneCountry, value)) setError("phone");
+              }}
+              onBlur={checkPhone}
+              invalid={Boolean(errors.phone)}
+              countryLabel={copy.form.countryCodeLabel}
+            />
+          </Row>
           <Row label={copy.form.addressLabel} htmlFor="address" error={errors.address}>
             <textarea
               id="address"
@@ -207,20 +263,18 @@ export function CartView({ catalog, zones, states, copy, policies }: Props) {
             <Row label={copy.form.cityLabel} htmlFor="city" error={errors.city}>
               <input id="city" name="city" autoComplete="address-level2" required className={inputClasses} />
             </Row>
-            <Row label={copy.form.stateLabel} htmlFor="state" error={errors.state}>
-              <div className="relative">
-                <select id="state" value={state} onChange={(event) => setState(event.target.value)} required className={inputClasses}>
-                  <option value="" disabled>
-                    —
-                  </option>
-                  {states.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                <Icon name="chevron-down" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
-              </div>
+            <Row label={copy.form.stateLabel} htmlFor="state" labelId="state-label" error={errors.state}>
+              <Select
+                id="state"
+                labelledBy="state-label"
+                value={state}
+                onChange={(value) => {
+                  setState(value);
+                  setError("state");
+                }}
+                options={states.map((item) => ({ value: item, label: item }))}
+                invalid={Boolean(errors.state)}
+              />
             </Row>
           </div>
         </div>

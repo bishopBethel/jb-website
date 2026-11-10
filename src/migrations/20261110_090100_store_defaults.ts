@@ -39,7 +39,11 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
         closed: "Our online store opens soon.",
       },
       form: {
-        nameLabel: "Full name",
+        firstNameLabel: "First name",
+        lastNameLabel: "Last name",
+        countryCodeLabel: "Country code",
+        emailInvalid: "This email doesn't look right. Please check it.",
+        phoneInvalid: "This phone number doesn't look right for the country chosen.",
         emailLabel: "Email",
         phoneLabel: "Phone number",
         addressLabel: "Delivery address",

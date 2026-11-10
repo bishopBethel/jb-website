@@ -432,8 +432,13 @@ export interface Order {
    * Naira.
    */
   total: number;
+  firstName: string;
+  lastName: string;
   customerName: string;
   email: string;
+  /**
+   * International form, ready for SMS.
+   */
   phone: string;
   address: string;
   city: string;
@@ -877,6 +882,8 @@ export interface OrdersSelect<T extends boolean = true> {
   subtotal?: T;
   deliveryFee?: T;
   total?: T;
+  firstName?: T;
+  lastName?: T;
   customerName?: T;
   email?: T;
   phone?: T;
@@ -1851,8 +1858,12 @@ export interface Checkout {
     closed: string;
   };
   form: {
-    nameLabel: string;
+    firstNameLabel: string;
+    lastNameLabel: string;
     emailLabel: string;
+    countryCodeLabel: string;
+    emailInvalid: string;
+    phoneInvalid: string;
     phoneLabel: string;
     addressLabel: string;
     cityLabel: string;
@@ -2466,8 +2477,12 @@ export interface CheckoutSelect<T extends boolean = true> {
   form?:
     | T
     | {
-        nameLabel?: T;
+        firstNameLabel?: T;
+        lastNameLabel?: T;
         emailLabel?: T;
+        countryCodeLabel?: T;
+        emailInvalid?: T;
+        phoneInvalid?: T;
         phoneLabel?: T;
         addressLabel?: T;
         cityLabel?: T;

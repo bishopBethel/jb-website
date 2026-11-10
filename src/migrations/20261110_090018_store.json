@@ -3675,6 +3675,20 @@
           "notNull": true,
           "autoincrement": false
         },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "customer_name": {
           "name": "customer_name",
           "type": "text",
@@ -13562,8 +13576,15 @@
           "notNull": false,
           "autoincrement": false
         },
-        "form_name_label": {
-          "name": "form_name_label",
+        "form_first_name_label": {
+          "name": "form_first_name_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "form_last_name_label": {
+          "name": "form_last_name_label",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13571,6 +13592,27 @@
         },
         "form_email_label": {
           "name": "form_email_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "form_country_code_label": {
+          "name": "form_country_code_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "form_email_invalid": {
+          "name": "form_email_invalid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "form_phone_invalid": {
+          "name": "form_phone_invalid",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13840,8 +13882,15 @@
           "notNull": false,
           "autoincrement": false
         },
-        "version_form_name_label": {
-          "name": "version_form_name_label",
+        "version_form_first_name_label": {
+          "name": "version_form_first_name_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_form_last_name_label": {
+          "name": "version_form_last_name_label",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -13849,6 +13898,27 @@
         },
         "version_form_email_label": {
           "name": "version_form_email_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_form_country_code_label": {
+          "name": "version_form_country_code_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_form_email_invalid": {
+          "name": "version_form_email_invalid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version_form_phone_invalid": {
+          "name": "version_form_phone_invalid",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -14078,6 +14148,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "acd54a64-1143-498a-98ea-9ef77c13a82d",
+  "id": "8e6ff091-e3e0-407e-9d35-74d3711e175c",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

@@ -2,12 +2,16 @@ import type { BasePayload } from "payload";
 import type { Order, Product, ShopSetting } from "@/payload-types";
 import { sendOrderEmails } from "./email";
 import { initializePayment, verifyPayment } from "./paystack";
+import { isValidEmail, toInternational } from "./phone";
 import { isNigerianState } from "./states";
 
 export type CheckoutInput = {
   items: { product: string; quantity: number }[];
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  /** Two-letter country code of the phone's dialling code. */
+  phoneCountry: string;
   phone: string;
   address: string;
   city: string;
@@ -95,17 +99,22 @@ export function validate(raw: Record<string, unknown>): CheckoutInput {
       const line = (item ?? {}) as Record<string, unknown>;
       return { product: clean(line.product, 80), quantity: Number(line.quantity) };
     }),
-    name: clean(raw.name, 100),
+    firstName: clean(raw.firstName, 60),
+    lastName: clean(raw.lastName, 60),
     email: clean(raw.email, 200).toLowerCase(),
+    phoneCountry: clean(raw.phoneCountry, 2).toUpperCase(),
     phone: clean(raw.phone, 30),
     address: typeof raw.address === "string" ? raw.address.trim().slice(0, 300) : "",
     city: clean(raw.city, 80),
     state: clean(raw.state, 60),
     agree: raw.agree === true,
   };
-  if (input.name.length < 2) throw new CheckoutError("invalid", "Enter your full name.", "name");
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.email)) throw new CheckoutError("invalid", "Enter a valid email.", "email");
-  if (!/^\+?[0-9\s-]{7,20}$/.test(input.phone)) throw new CheckoutError("invalid", "Enter a valid phone number.", "phone");
+  if (!input.firstName) throw new CheckoutError("invalid", "Enter your first name.", "firstName");
+  if (!input.lastName) throw new CheckoutError("invalid", "Enter your last name.", "lastName");
+  if (!isValidEmail(input.email)) throw new CheckoutError("invalid", "This email doesn't look right. Please check it.", "email");
+  const phone = toInternational(input.phoneCountry, input.phone);
+  if (!phone) throw new CheckoutError("invalid", "This phone number doesn't look right for the country chosen.", "phone");
+  input.phone = phone;
   if (input.address.length < 5) throw new CheckoutError("invalid", "Enter your delivery address.", "address");
   if (input.city.length < 2) throw new CheckoutError("invalid", "Enter your city or town.", "city");
   if (!input.agree) throw new CheckoutError("invalid", "Please agree to the policies.", "agree");
@@ -138,7 +147,9 @@ export async function startCheckout(payload: BasePayload, input: CheckoutInput, 
       subtotal: priced.subtotal,
       deliveryFee: priced.deliveryFee,
       total: priced.total,
-      customerName: input.name,
+      firstName: input.firstName,
+      lastName: input.lastName,
+      customerName: `${input.firstName} ${input.lastName}`,
       email: input.email,
       phone: input.phone,
       address: input.address,

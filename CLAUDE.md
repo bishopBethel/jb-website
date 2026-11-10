@@ -23,6 +23,10 @@ here. This site has no dark mode, no backend and no dashboard.
   header, both to `/checkout`. `/checkout` holds the items with quantity steppers, delivery details,
   the total and Pay now, which goes straight to Paystack's payment page. `/cart` redirects there; a
   paid order empties the cart.
+- Delivery details ask for first and last name (orders keep both and the full name), an email
+  checked as soon as the field is left, and a phone in one field (`PhoneField`): a country code
+  picker on its left (Nigeria first), then the number hinted with that country's example. Phones
+  are stored in international form (`+2348031234567`, `src/store/phone.ts`) so they can be texted.
 - The store is a small custom checkout, not Payload's beta store plugin (`src/store/`): `/checkout`
   posts the cart's items to `POST /api/checkout`, which re-prices everything on the server, records
   an order awaiting payment and returns Paystack's hosted payment page. Paystack sends buyers to
@@ -106,6 +110,9 @@ here. This site has no dark mode, no backend and no dashboard.
 - Inter is used at weight 400, except that buttons (`Button`) are bold (700); the dock's tabs stay
   regular. Buttons, the dock's tabs and the store notice are in sentence case as written in content
   ("Shop Now", "Get Started", "Buy Pocket Power", each set as the brand writes it), never forced to capitals; menu links stay in capitals. Full-width buttons set their text at 18px on phones and 16px from `md`, larger than the 13px label size. Do not add `font-medium` or any other weight.
+- Every dropdown uses `Select` (`src/components/ui/Select.tsx`), never the browser's own `<select>`:
+  a square list with a carbon hairline on linen, the chosen item in pine with a pine dot. It opens
+  upward near the bottom of the screen, and keeps arrows, Enter, Escape and type-to-jump.
 - Design rules: radius 0 and no shadows, except that every button (and the store notice in a
   button's place) is a fully rounded pill. The page ground is linen (the `paper` token); white is never
   used. Pine is the primary accent: bands, headline accents, the footer bar and the `pine` button
